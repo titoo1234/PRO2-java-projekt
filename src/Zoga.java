@@ -7,7 +7,7 @@ public class Zoga {
 	private int smerX;
 	private int smerY;
 	
-	public Zoga(double x,double y,  int polmer, int hitrost) {
+	public Zoga(double x, double y,  int polmer, int hitrost) {
 		this.x = x;
 		this.y = y;
 		this.polmer = polmer;
