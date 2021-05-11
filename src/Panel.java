@@ -6,10 +6,11 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel {
-	Zoga zoga = new Zoga(16.2,45.2,50,50);
-	public Panel() {
+	Zoga zoga;
+	public Panel(Zoga zoga) {
 		super();
         setBackground(Color.WHITE);
+        this.zoga = zoga;
 	}
     @Override
     public void paint(Graphics g) {
@@ -26,7 +27,7 @@ public class Panel extends JPanel {
         Color barva1 = Color.black;
         graphics.setColor(barva1);
         graphics.drawOval((int)x,(int) y, r, r);
-
+        
     }
 
 }
