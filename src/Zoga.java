@@ -7,9 +7,11 @@ public class Zoga {
 	private int smerX;
 	private int smerY;
 	private Frame frame;
+	private double koncna;
 	
 	
-	public Zoga(double x, double y,  int polmer, double hitrost,int smerX,int smerY) {
+	public Zoga(double x, double y,  int polmer, double hitrost,int smerX,int smerY,double koncna) {
+		this.koncna = koncna/10;
 		this.x = x;
 		this.y = y;
 		this.polmer = polmer;
@@ -18,9 +20,98 @@ public class Zoga {
 		this.smerY = smerY;
 	
 	}
+	public void ustaviZazeni() {
+		if (this.getHitrost() != 0.0) {	
+			this.setHitrost(0.0);
+			}
+			else {
+//				System.out.print(zoga.getKoncna());
+				this.setHitrost(this.getKoncna());	
+			}
+	}
 	
 
 	
+
+
+	public double getKoncna() {
+		return koncna;
+	}
+
+
+
+
+
+	public void setKoncna(int koncna) {
+		this.koncna = koncna;
+	}
+
+
+
+
+
+	public Frame getFrame() {
+		return frame;
+	}
+
+
+
+
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+
+
+
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+
+
+
+
+	public void setPolmer(int polmer) {
+		this.polmer = polmer;
+	}
+
+
+
+
+
+	public void setHitrost(double hitrost) {
+		this.hitrost = hitrost;
+	}
+
+
+
+
+
+	public void setSmerX(int smerX) {
+		this.smerX = smerX;
+	}
+
+
+
+
+
+	public void setSmerY(int smerY) {
+		this.smerY = smerY;
+	}
+
+
+
+
+
+	public void setFrame(Frame frame) {
+		this.frame = frame;
+	}
+
+
+
 
 
 	public double getX() {

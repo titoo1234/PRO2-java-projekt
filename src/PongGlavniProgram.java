@@ -4,9 +4,11 @@ import java.awt.Dimension;
 public class PongGlavniProgram {
 
 	public static void main(String[] args) {
-		Zoga zoga = new Zoga(16.2,45.2,15,6,6,6);
+		Zoga zoga = new Zoga(16.2,45.2,15,6,6,6,6);
 		System.out.println(zoga.getX());
 		Frame okno = new Frame(zoga);
+		okno.setVisible(true);
+		
 		
 		
 		int i = okno.getHeight();
@@ -18,10 +20,11 @@ public class PongGlavniProgram {
 		double desiredFPS = 50d;
 		long sleep = (long) (GameTimer.ONE_SECOND / desiredFPS);
 		GameTimer timer = new GameTimer();
+		
 		timer.start();
-
 		try {
 		    while(true){
+		    	
 
 		        // tick and print fps
 		        timer.tick();
@@ -36,7 +39,7 @@ public class PongGlavniProgram {
 		        long wake = System.nanoTime() + sleep - timer.tock();
 		        do {Thread.sleep(0);}
 		        while (System.nanoTime() < wake);
-//		        System.out.print(zoga.getX());
+
 		    }
 		} catch (InterruptedException e) {
 		    // oh someone paused the game
