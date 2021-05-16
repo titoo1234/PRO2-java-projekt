@@ -24,9 +24,11 @@ public class Frame extends JFrame{
 	Zoga zoga;
 	Panel panel;
 	JComboBox<Integer>	sizes;
-    public Frame(Zoga zoga) {
+	Igralec igralec1;
+	Igralec igralec2;
+    public Frame(Zoga zoga,Igralec igralec1,Igralec igralec2) {
         super();
-        
+        this.igralec1 = igralec1;
         this.zoga = zoga;
         this.setTitle("Pong");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,7 +112,16 @@ public class Frame extends JFrame{
         String vel1 = sizes.getSelectedItem().toString();
 		int velikost =   Integer.parseInt(vel1);
 		zoga.setPolmer(velikost);
-        Panel panel = new Panel(zoga);
+		
+		
+		
+		
+		
+		
+        Panel panel = new Panel(zoga,igralec1,igralec2);
+        Dimension dim = panel.getSize();
+        double visina = dim.getHeight();
+        
         panel.addMouseListener(new MouseListener() {
     		
     		@Override
@@ -174,7 +185,7 @@ public class Frame extends JFrame{
     @Override
     public void repaint() {
     	// TODO Auto-generated method stub
-//    	
+
     	super.repaint();
         
     }

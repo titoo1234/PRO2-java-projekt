@@ -1,5 +1,6 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.MouseInfo;
@@ -14,12 +15,20 @@ import javax.swing.JPanel;
 
 public class Panel extends JPanel {
 	Zoga zoga;
-
-	public Panel(Zoga zoga) {
+	Igralec igralec1;
+	Igralec igralec2;
+	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2) {
 		super();
 		
         setBackground(Color.WHITE);
+        Dimension dim  = this.getSize();
+        int polozajY = (int) dim.getHeight()/2;
+        igralec1.setPolozaj(polozajY/2);
+        igralec2.setPolozaj(polozajY/2);
         this.zoga = zoga;
+        this.igralec1 = igralec1;
+        this.igralec2 = igralec2;
+
 	}
     @Override
     public void paint(Graphics g) {
@@ -30,23 +39,26 @@ public class Panel extends JPanel {
     	double x = zoga.getX();
     	double y = zoga.getY();
     	int r = zoga.getPolmer();
-    	
+        Color barva1 = Color.black;
+        graphics.setColor(barva1);
+        graphics.drawOval((int)x,(int) y, r, r);    	
     	graphics.setColor(Color.BLACK);
     	graphics.setStroke(new BasicStroke(2.0f));
         graphics.fillOval((int)x,(int) y, r, r);
-        Color barva1 = Color.black;
-        graphics.setColor(barva1);
-        graphics.drawOval((int)x,(int) y, r, r);
+        Dimension dim  = this.getSize();
+        
+        int polozajX = (int) dim.getWidth();
+        int polozajY = (int) dim.getHeight();
+        int vel = igralec1.relVelikost;
+        
+        graphics.drawRect(polozajX-10, igralec1.getPolozaj()- vel/2, 10, vel);
+        graphics.fillRect(polozajX-10, igralec1.getPolozaj()- vel/2, 10, vel);
+        
+        graphics.drawRect(0, igralec2.getPolozaj()- vel/2, 10, vel);
+        graphics.fillRect(0, igralec2.getPolozaj()- vel/2, 10, vel);
+        
         
     }
-   
-//    public void addKeyListener(KeyListener l) {
-//    	// TODO Auto-generated method stub
-//    	super.addKeyListener(l);
-//    	 if(l.getKeyCode() == KeyEvent.VK_SPACE){
-//             System.out.println("Pressed");
-    	
-//    }
-    	
+
 
 }

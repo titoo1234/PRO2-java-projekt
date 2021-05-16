@@ -1,5 +1,6 @@
 import java.util.Random;
 
+
 public class Zoga {
 	private double	x;	
 	private double	y;
@@ -9,6 +10,7 @@ public class Zoga {
 	private double smerY;
 	private Frame frame;
 	private double koncna;
+	Igralec igralec1;
 	
 	
 	public Zoga(double x, double y,  int polmer, double hitrost,double smerX,double smerY,double koncna) {
@@ -145,12 +147,19 @@ public class Zoga {
 		this.y = this.y + this.hitrost * this.smerY;
 	}
 	
-	public void sprememba(Frame frame) {
+	public void sprememba(Frame frame,Igralec igralec1,Igralec igralec2) {
 //		èe pride do roba se more spremeniti smerX in smerY
 		int sirina = frame.sir();
 		int visina = frame.vis();
+		if (this.x > sirina - this.polmer-15) {
+			if (igralec1.getRelVelikost() > Math.abs(this.y +this.polmer/2 -igralec1.getPolozaj()) ) {
+				this.smerX = -this.getSmerX();
+			}	
+		}
+		if (this.x < 15 & igralec2.getRelVelikost() > Math.abs(this.y +this.polmer/2 -igralec2.getPolozaj())) {
+			this.smerX = -this.getSmerX();
+		}
 		if (this.x < 0 | this.x > sirina - this.polmer) {
-			
 			this.ustaviZazeni();
 			int stp1 = new Random().nextBoolean() ? -1 : 1;
 			double st1 = stp1*(0.5 + 0.5*Math.random());
@@ -158,9 +167,10 @@ public class Zoga {
 			double st2 = stp2*(Math.sqrt(1-st1*st1));
 			this.smerX = st1;
 			this.smerY = st2;
-			this.setX(200);
-			this.setY(200);
-		}
+			this.setX(sirina/2);
+			this.setY(visina/2);
+			}
+		
 		if (this.y < 0 | this.y > visina-this.polmer-70) {
 			this.smerY = -this.getSmerY();
 	}
