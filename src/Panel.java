@@ -17,6 +17,7 @@ public class Panel extends JPanel {
 
 	public Panel(Zoga zoga) {
 		super();
+		
         setBackground(Color.WHITE);
         this.zoga = zoga;
 	}
@@ -29,6 +30,7 @@ public class Panel extends JPanel {
     	double x = zoga.getX();
     	double y = zoga.getY();
     	int r = zoga.getPolmer();
+    	
     	graphics.setColor(Color.BLACK);
     	graphics.setStroke(new BasicStroke(2.0f));
         graphics.fillOval((int)x,(int) y, r, r);

@@ -11,14 +11,22 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Frame extends JFrame{
+
 	Zoga zoga;
 	Panel panel;
+	JComboBox<Integer>	sizes;
     public Frame(Zoga zoga) {
         super();
+        
         this.zoga = zoga;
         this.setTitle("Pong");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,9 +39,21 @@ public class Frame extends JFrame{
         this.setLayout(new BorderLayout());
         this.setLocation(20, 20);
         JPanel panel1 = new JPanel();
+        panel1.add(new JLabel("Velikost:"));
+    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] { 8, 16, 32, 64 ,237 });
+    	sizes.addActionListener (new ActionListener () {
+    	    public void actionPerformed(ActionEvent e) {
+    	    	String vel1 = sizes.getSelectedItem().toString();
+    			int velikost =   Integer.parseInt(vel1);
+    			zoga.setPolmer(velikost);
+    	        
+    	    }
+    	});
+    	panel1.add(sizes);
         panel1.setBackground(Color.red);
     	JButton button = new JButton("Pause/Start");
     	button.setPreferredSize(new Dimension(80, 15));
+    	
     	button.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
@@ -45,14 +65,51 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(button);
+    	JSlider slider = new JSlider(0, 10, 1);
+    	slider.addChangeListener(new ChangeListener() {
+    		
+    		@Override
+    	    public void stateChanged(ChangeEvent e) {
+    			JSlider source = (JSlider)e.getSource();
+    			if (!source.getValueIsAdjusting()) {
+    	              int hitrost = (int)source.getValue();
+    	              if (zoga.getHitrost() == 0) {
+    	            	  zoga.setKoncna(hitrost);
+    	            	  zoga.setHitrost(hitrost); //ta del lahko zakomentirama
+    	              }
+    	              else{
+    	            	  zoga.setKoncna(hitrost);
+        	              zoga.setHitrost(hitrost);
+    	            	  
+    	              }
+    	              
+    	              
+    			}
+//    	        panel1.repaint();
+    	        
+    	    }
+    	});
+    	panel1.add(slider);
+    	
+    	
+//    	while (true) {
+//    	    // ...
+//    	    try {
+//    	        Thread.sleep(slider.getValue());
+//    	    } catch (InterruptedException e) {
+//    	        e.printStackTrace();
+//    	    }
+//    	}
         
         add (panel1, BorderLayout.NORTH);
         JPanel panel2 = new JPanel();
         panel2.setBackground(Color.red);
         add (panel2, BorderLayout.SOUTH);
         
-        
-        
+        zoga.ustaviZazeni();
+        String vel1 = sizes.getSelectedItem().toString();
+		int velikost =   Integer.parseInt(vel1);
+		zoga.setPolmer(velikost);
         Panel panel = new Panel(zoga);
         panel.addMouseListener(new MouseListener() {
     		
@@ -62,7 +119,13 @@ public class Frame extends JFrame{
     		}
     		@Override	
     		public void mousePressed(MouseEvent e) {			
+    			String vel1 = sizes.getSelectedItem().toString();
+    			int velikost =   Integer.parseInt(vel1);
+    			zoga.setPolmer(velikost);
+    			
     			zoga.ustaviZazeni();
+    			
+    			
     		}
     		
     		@Override
@@ -85,7 +148,11 @@ public class Frame extends JFrame{
             {
                 if(evt.getKeyCode() == KeyEvent.VK_SPACE)
                 {
+//                	String vel1 = sizes.getSelectedItem().toString();
+//        			int velikost =   Integer.parseInt(vel1);
+//        			zoga.setPolmer(velikost);
                 	zoga.ustaviZazeni();
+                	
                 }
             }
         });
@@ -102,6 +169,14 @@ public class Frame extends JFrame{
     	int b = this.getSize().width;
 //    	System.out.println(b);
         return b;
+    }
+
+    @Override
+    public void repaint() {
+    	// TODO Auto-generated method stub
+//    	
+    	super.repaint();
+        
     }
 
 }

@@ -1,13 +1,27 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.Random;
 
 public class PongGlavniProgram {
 
 	public static void main(String[] args) {
-		Zoga zoga = new Zoga(16.2,45.2,15,6,6,6,6);
+		int stp1 = new Random().nextBoolean() ? -1 : 1;
+		double st1 = stp1*(0.5 + 0.5*Math.random());
+		int stp2 = new Random().nextBoolean() ? -1 : 1;
+		double st2 = stp2*(Math.sqrt(1-st1*st1));
+//		System.out.print(st1);
+//		System.out.print(st2);
+		
+		
+//		System.out.println(vel1);
+
+		
+
+		Zoga zoga = new Zoga(200,200.20,20,60,st1,st2,60);
 		System.out.println(zoga.getX());
 		Frame okno = new Frame(zoga);
 		okno.setVisible(true);
+		
 		
 		
 		
