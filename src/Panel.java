@@ -23,12 +23,12 @@ public class Panel extends JPanel {
         setBackground(Color.WHITE);
         Dimension dim  = this.getSize();
         int polozajY = (int) dim.getHeight()/2;
-        igralec1.setPolozaj(polozajY/2);
-        igralec2.setPolozaj(polozajY/2);
+
         this.zoga = zoga;
         this.igralec1 = igralec1;
         this.igralec2 = igralec2;
-
+        igralec1.setPolozaj(polozajY/2);
+        igralec2.setPolozaj(polozajY/2);
 	}
     @Override
     public void paint(Graphics g) {
@@ -50,12 +50,23 @@ public class Panel extends JPanel {
         int polozajX = (int) dim.getWidth();
         int polozajY = (int) dim.getHeight();
         int vel = igralec1.relVelikost;
-        
+        //risanje robov
+        int sirina = 13;
+      //risanje igralcev
+        graphics.setColor(Color.GRAY);
         graphics.drawRect(polozajX-10, igralec1.getPolozaj()- vel/2, 10, vel);
         graphics.fillRect(polozajX-10, igralec1.getPolozaj()- vel/2, 10, vel);
-        
+
         graphics.drawRect(0, igralec2.getPolozaj()- vel/2, 10, vel);
         graphics.fillRect(0, igralec2.getPolozaj()- vel/2, 10, vel);
+        
+        graphics.setColor(Color.black);
+        graphics.drawRect(0, 0, polozajX, sirina);
+        graphics.fillRect(0, 0, polozajX, sirina);
+        
+        graphics.drawRect(0, polozajY-sirina, polozajX, sirina);
+        graphics.fillRect(0, polozajY-sirina, polozajX, sirina);
+      
         
         
     }

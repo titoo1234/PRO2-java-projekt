@@ -171,7 +171,7 @@ public class Zoga {
 			this.setY(visina/2);
 			}
 		
-		if (this.y < 0 | this.y > visina-this.polmer-70) {
+		if (this.y < 13 | this.y > visina-this.polmer-90) {
 			this.smerY = -this.getSmerY();
 	}
 	}

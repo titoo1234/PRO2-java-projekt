@@ -145,11 +145,29 @@ public class Igralec {
 
 
 	public  void update(Zoga zoga) {
+		if (this.pc) {
 		if (zoga.getY() +zoga.getPolmer()/2< this.polozaj) { //zoga je visje
 			this.polozaj = this.polozaj - this.hitrost;
 		}
 		else {
 			this.polozaj = this.polozaj + this.hitrost;
+		}
+		}
+		
+	}
+
+
+
+
+
+
+
+	public void spremeniAuto() {
+		if (this.pc) {
+			this.pc = false;
+		}
+		else {
+			this.pc = true;
 		}
 		
 	}

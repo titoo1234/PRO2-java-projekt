@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,7 +43,7 @@ public class Frame extends JFrame{
         this.setLocation(20, 20);
         JPanel panel1 = new JPanel();
         panel1.add(new JLabel("Velikost:"));
-    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] { 8, 16, 32, 64 ,237 });
+    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] { 8, 16, 32, 64  });
     	sizes.addActionListener (new ActionListener () {
     	    public void actionPerformed(ActionEvent e) {
     	    	String vel1 = sizes.getSelectedItem().toString();
@@ -52,6 +53,27 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(sizes);
+    	JCheckBox check1 = new JCheckBox("Igralec1", true);
+    	check1.addActionListener(new ActionListener() {
+    	    @Override
+    	    public void actionPerformed(ActionEvent e) {
+    	    	igralec1.spremeniAuto();
+    	        panel1.repaint();
+    	    }
+    	});
+    	panel1.add(check1);
+    	JCheckBox check2 = new JCheckBox("Igralec2", true);
+    	check2.addActionListener(new ActionListener() {
+    	    @Override
+    	    public void actionPerformed(ActionEvent e) {
+    	    	igralec2.spremeniAuto();
+    	        panel1.repaint();
+    	    }
+    	});
+    	panel1.add(check2);
+    	
+    	
+    	
         panel1.setBackground(Color.red);
     	JButton button = new JButton("Pause/Start");
     	button.setPreferredSize(new Dimension(80, 15));
