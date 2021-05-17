@@ -41,7 +41,9 @@ public class Panel extends JPanel {
     	int r = zoga.getPolmer();
         Color barva1 = Color.black;
         graphics.setColor(barva1);
-        graphics.drawOval((int)x,(int) y, r, r);    	
+        graphics.drawOval((int)x,(int) y, r, r); 
+//        graphics.drawOval(100,100, 100, 100); 
+//        graphics.drawOval(0,0, 100, 100); 
     	graphics.setColor(Color.BLACK);
     	graphics.setStroke(new BasicStroke(2.0f));
         graphics.fillOval((int)x,(int) y, r, r);
@@ -56,9 +58,9 @@ public class Panel extends JPanel {
         graphics.setColor(Color.GRAY);
         graphics.drawRect(polozajX-10, igralec1.getPolozaj()- vel/2, 10, vel);
         graphics.fillRect(polozajX-10, igralec1.getPolozaj()- vel/2, 10, vel);
-
-        graphics.drawRect(0, igralec2.getPolozaj()- vel/2, 10, vel);
-        graphics.fillRect(0, igralec2.getPolozaj()- vel/2, 10, vel);
+        int vel2 = igralec2.relVelikost;
+        graphics.drawRect(0, igralec2.getPolozaj()- vel2/2, 10, vel);
+        graphics.fillRect(0, igralec2.getPolozaj()- vel2/2, 10, vel);
         
         graphics.setColor(Color.black);
         graphics.drawRect(0, 0, polozajX, sirina);

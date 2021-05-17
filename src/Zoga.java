@@ -151,10 +151,20 @@ public class Zoga {
 //		èe pride do roba se more spremeniti smerX in smerY
 		int sirina = frame.sir();
 		int visina = frame.vis();
-		if (this.x > sirina - this.polmer-15) {
-			if (igralec1.getRelVelikost() > Math.abs(this.y +this.polmer/2 -igralec1.getPolozaj()) ) {
+		if (this.x  > sirina - this.polmer - 15) {
+			if (this.y > igralec1.getPolozaj()) {
+			if (igralec1.getRelVelikost() > Math.abs(this.y - this.polmer -igralec1.getPolozaj()) ) {
+				
 				this.smerX = -this.getSmerX();
 			}	
+			}
+		
+			else {
+			if (igralec1.getRelVelikost() > Math.abs(this.y -igralec1.getPolozaj()) ) {
+				
+				this.smerX = -this.getSmerX();
+			}	
+			}
 		}
 		if (this.x < 15 & igralec2.getRelVelikost() > Math.abs(this.y +this.polmer/2 -igralec2.getPolozaj())) {
 			this.smerX = -this.getSmerX();

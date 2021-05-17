@@ -16,8 +16,10 @@ public class Igralec {
 		this.hitrost = hitrost;
 		this.relVelikost = relVelikost;
 		
+		
 	}
-
+	
+	
 	
 	
 
@@ -147,20 +149,15 @@ public class Igralec {
 	public  void update(Zoga zoga) {
 		if (this.pc) {
 		if (zoga.getY() +zoga.getPolmer()/2< this.polozaj) { //zoga je visje
-			this.polozaj = this.polozaj - this.hitrost;
+			this.polozaj = this.polozaj - this.hitrost/7;
 		}
 		else {
-			this.polozaj = this.polozaj + this.hitrost;
+			this.polozaj = this.polozaj + this.hitrost/7;
 		}
 		}
 		
 	}
-
-
-
-
-
-
+	
 
 	public void spremeniAuto() {
 		if (this.pc) {
@@ -169,8 +166,11 @@ public class Igralec {
 		else {
 			this.pc = true;
 		}
-		
 	}
+		
+	
+	
+	
 	
 	
 

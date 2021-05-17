@@ -43,7 +43,7 @@ public class Frame extends JFrame{
         this.setLocation(20, 20);
         JPanel panel1 = new JPanel();
         panel1.add(new JLabel("Velikost:"));
-    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] { 8, 16, 32, 64  });
+    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] { 10,16, 32, 64  });
     	sizes.addActionListener (new ActionListener () {
     	    public void actionPerformed(ActionEvent e) {
     	    	String vel1 = sizes.getSelectedItem().toString();
@@ -73,8 +73,8 @@ public class Frame extends JFrame{
     	panel1.add(check2);
     	
     	
-    	
-        panel1.setBackground(Color.red);
+    	Color customColor = new Color(200,255,200);
+        panel1.setBackground(customColor);
     	JButton button = new JButton("Pause/Start");
     	button.setPreferredSize(new Dimension(80, 15));
     	
@@ -127,7 +127,7 @@ public class Frame extends JFrame{
         
         add (panel1, BorderLayout.NORTH);
         JPanel panel2 = new JPanel();
-        panel2.setBackground(Color.red);
+        panel2.setBackground(customColor);
         add (panel2, BorderLayout.SOUTH);
         
         zoga.ustaviZazeni();
@@ -174,22 +174,42 @@ public class Frame extends JFrame{
     			// TODO Auto-generated method stub
     			
     		}
+        
     	});
         addKeyListener(new KeyAdapter() 
         {
             public void keyPressed(KeyEvent evt)
             {
-                if(evt.getKeyCode() == KeyEvent.VK_SPACE)
+                if(evt.getKeyCode() == KeyEvent.VK_UP)
                 {
 //                	String vel1 = sizes.getSelectedItem().toString();
 //        			int velikost =   Integer.parseInt(vel1);
 //        			zoga.setPolmer(velikost);
-                	zoga.ustaviZazeni();
+//                	zoga.ustaviZazeni();
+                	if (!(igralec1.isPc())){//ni raèunalnik
+                	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
+                	panel1.repaint();
+                	}
+                	
                 	
                 }
             }
         });
-        
+        addKeyListener(new KeyAdapter() 
+        {
+            public void keyPressed(KeyEvent evt)
+            {
+                if(evt.getKeyCode() == KeyEvent.VK_DOWN)
+                {
+                	if (!(igralec1.isPc())){
+                	igralec1.setPolozaj(igralec1.getPolozaj() + igralec1.getHitrost());
+                	panel1.repaint();
+                	}
+                	
+                }
+            }
+        });
+//        
         add (panel, BorderLayout.CENTER);
         
     }

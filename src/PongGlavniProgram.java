@@ -10,9 +10,9 @@ public class PongGlavniProgram {
 		int stp2 = new Random().nextBoolean() ? -1 : 1;
 		double st2 = stp2*(Math.sqrt(1-st1*st1));
 //		Igralec igralec1 = new Igralec(1,2,50);
-		Igralec igralec1 = new Igralec(1,2,100,10,true);
-		Igralec igralec2 = new Igralec(1,4,100,10,true);
-		Zoga zoga = new Zoga(200,200.20,20,60,st1,st2,60);
+		Igralec igralec1 = new Igralec(1,10,100,10,true);
+		Igralec igralec2 = new Igralec(1,20,100,10,true);
+		Zoga zoga = new Zoga(200,200.20,20,50,st1,st2,50);
 		Frame okno = new Frame(zoga,igralec1,igralec2);
 		okno.setVisible(true);
 		int i = okno.getHeight();
