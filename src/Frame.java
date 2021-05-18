@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -24,11 +25,16 @@ public class Frame extends JFrame{
 
 	Zoga zoga;
 	Panel panel;
+	JPanel panel2;
 	JComboBox<Integer>	sizes;
 	Igralec igralec1;
 	Igralec igralec2;
-    public Frame(Zoga zoga,Igralec igralec1,Igralec igralec2) {
+	Rezultat rezultat;
+    public Frame(Zoga zoga,Igralec igralec1,Igralec igralec2,Rezultat rezultat) {
+    	
         super();
+//        setFocusable(true);
+        this.panel2 =  new JPanel();
         this.igralec1 = igralec1;
         this.zoga = zoga;
         this.setTitle("Pong");
@@ -53,6 +59,7 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(sizes);
+    	if (igralec1.isPc()) {
     	JCheckBox check1 = new JCheckBox("Igralec1", true);
     	check1.addActionListener(new ActionListener() {
     	    @Override
@@ -62,15 +69,44 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(check1);
-    	JCheckBox check2 = new JCheckBox("Igralec2", true);
-    	check2.addActionListener(new ActionListener() {
+    	}
+    	else {
+    	JCheckBox check1 = new JCheckBox("Igralec1", false);
+    	check1.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
-    	    	igralec2.spremeniAuto();
+    	    	igralec1.spremeniAuto();
     	        panel1.repaint();
     	    }
+    	    
     	});
-    	panel1.add(check2);
+    	panel1.add(check1);
+    	}
+    	
+    	if (igralec2.isPc()) {
+        	JCheckBox check2 = new JCheckBox("Igralec2", true);
+        	check2.addActionListener(new ActionListener() {
+        	    @Override
+        	    public void actionPerformed(ActionEvent e) {
+        	    	igralec2.spremeniAuto();
+        	        panel1.repaint();
+        	    }
+        	});
+        	panel1.add(check2);
+        	}
+        	else {
+        	JCheckBox check2 = new JCheckBox("Igralec2", false);
+        	check2.addActionListener(new ActionListener() {
+        	    @Override
+        	    public void actionPerformed(ActionEvent e) {
+        	    	igralec2.spremeniAuto();
+        	        panel1.repaint();
+        	    }
+        	    
+        	});
+        	panel1.add(check2);
+        	}
+
     	
     	
     	Color customColor = new Color(200,255,200);
@@ -108,6 +144,7 @@ public class Frame extends JFrame{
     	              }
     	              
     	              
+    	              
     			}
 //    	        panel1.repaint();
     	        
@@ -126,7 +163,16 @@ public class Frame extends JFrame{
 //    	}
         
         add (panel1, BorderLayout.NORTH);
-        JPanel panel2 = new JPanel();
+//        JPanel panel2 = new JPanel();
+        JTextField rez = new JTextField();
+        rez.setPreferredSize(new Dimension(140, 30));
+        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+rezultat.getGol2());
+        panel2.repaint();
+        
+        panel2.add(rez);
+        
+        
+        
         panel2.setBackground(customColor);
         add (panel2, BorderLayout.SOUTH);
         
@@ -140,78 +186,108 @@ public class Frame extends JFrame{
 		
 		
 		
-        Panel panel = new Panel(zoga,igralec1,igralec2);
+        Panel panel = new Panel(zoga,igralec1,igralec2,sizes);
         Dimension dim = panel.getSize();
         double visina = dim.getHeight();
         
-        panel.addMouseListener(new MouseListener() {
-    		
-    		@Override
-    		public void mouseReleased(MouseEvent e) {
-    			// TODO Auto-generated method stub	
-    		}
-    		@Override	
-    		public void mousePressed(MouseEvent e) {			
-    			String vel1 = sizes.getSelectedItem().toString();
-    			int velikost =   Integer.parseInt(vel1);
-    			zoga.setPolmer(velikost);
-    			
-    			zoga.ustaviZazeni();
-    			
-    			
-    		}
-    		
-    		@Override
-    		public void mouseExited(MouseEvent e) {
-    			// TODO Auto-generated method stub	
-    		}
-    		@Override
-    		public void mouseEntered(MouseEvent e) {
-    			// TODO Auto-generated method stub	
-    		}
-    		@Override
-    		public void mouseClicked(MouseEvent e) {
-    			// TODO Auto-generated method stub
-    			
-    		}
         
-    	});
-        addKeyListener(new KeyAdapter() 
-        {
-            public void keyPressed(KeyEvent evt)
-            {
-                if(evt.getKeyCode() == KeyEvent.VK_UP)
-                {
-//                	String vel1 = sizes.getSelectedItem().toString();
-//        			int velikost =   Integer.parseInt(vel1);
-//        			zoga.setPolmer(velikost);
-//                	zoga.ustaviZazeni();
-                	if (!(igralec1.isPc())){//ni raèunalnik
-                	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
-                	panel1.repaint();
-                	}
-                	
-                	
-                }
-            }
-        });
-        addKeyListener(new KeyAdapter() 
-        {
-            public void keyPressed(KeyEvent evt)
-            {
-                if(evt.getKeyCode() == KeyEvent.VK_DOWN)
-                {
-                	if (!(igralec1.isPc())){
-                	igralec1.setPolozaj(igralec1.getPolozaj() + igralec1.getHitrost());
-                	panel1.repaint();
-                	}
-                	
-                }
-            }
-        });
+//        panel.addMouseListener(new MouseListener() {
+//    		
+//    		@Override
+//    		public void mouseReleased(MouseEvent e) {
+//    			// TODO Auto-generated method stub	
+//    		}
+//    		@Override	
+//    		public void mousePressed(MouseEvent e) {			
+//    			String vel1 = sizes.getSelectedItem().toString();
+//    			int velikost =   Integer.parseInt(vel1);
+//    			zoga.setPolmer(velikost);
+//    			
+//    			zoga.ustaviZazeni();
+//    			
+//    			
+//    		}
+//    		
+//    		@Override
+//    		public void mouseExited(MouseEvent e) {
+//    			// TODO Auto-generated method stub	
+//    		}
+//    		@Override
+//    		public void mouseEntered(MouseEvent e) {
+//    			// TODO Auto-generated method stub	
+//    		}
+//    		@Override
+//    		public void mouseClicked(MouseEvent e) {
+//    			// TODO Auto-generated method stub
+//    			
+//    		}
+//        
+//    	});
+//        addKeyListener(new KeyAdapter() 
+//        {
+//            public void keyPressed(KeyEvent evt)
+//            {
+//                if(evt.getKeyCode() == KeyEvent.VK_UP)
+//                {
+////                	String vel1 = sizes.getSelectedItem().toString();
+////        			int velikost =   Integer.parseInt(vel1);
+////        			zoga.setPolmer(velikost);
+////                	zoga.ustaviZazeni();
+//                	if (!(igralec1.isPc())){//ni raèunalnik
+//                	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
+//                	panel1.repaint();
+//                	}
+//                	
+//                	
+//                }
+//            }
+//        });
+//        addKeyListener(new KeyAdapter() 
+//        {
+//            public void keyPressed(KeyEvent evt)
+//            {
+//                if(evt.getKeyCode() == KeyEvent.VK_DOWN)
+//                {
+//                	if (!(igralec1.isPc())){
+//                	igralec1.setPolozaj(igralec1.getPolozaj() + igralec1.getHitrost());
+//                	panel1.repaint();
+//                	}
+//                	
+//                }
+//            }
+//        });
+//        addKeyListener(new KeyAdapter() 
+//        {
+//            public void keyPressed(KeyEvent evt)
+//            {
+//                if(evt.getKeyCode() == KeyEvent.VK_W)
+//                {
+//                	if (!(igralec2.isPc())){
+//                	igralec2.setPolozaj(igralec2.getPolozaj() - igralec2.getHitrost());
+//                	panel1.repaint();
+//                	}
+//                	
+//                }
+//            }
+//        });
+//        addKeyListener(new KeyAdapter() 
+//        {
+//            public void keyPressed(KeyEvent evt)
+//            {
+//                if(evt.getKeyCode() == KeyEvent.VK_S)
+//                {
+//                	if (!(igralec2.isPc())){
+//                	igralec2.setPolozaj(igralec2.getPolozaj() + igralec2.getHitrost());
+//                	
+//                	panel1.repaint();
+//                	}
+//                	
+//                }
+//            }
+//        });
 //        
         add (panel, BorderLayout.CENTER);
-        
+      
     }
     public int vis() {
     	int a = this.getSize().height;
@@ -229,6 +305,7 @@ public class Frame extends JFrame{
     	// TODO Auto-generated method stub
 
     	super.repaint();
+    	
         
     }
 

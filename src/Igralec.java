@@ -18,14 +18,7 @@ public class Igralec {
 		
 		
 	}
-	
-	
-	
-	
 
-	
-	
-	
 	public int getSt() {
 		return st;
 	}
@@ -132,19 +125,9 @@ public class Igralec {
 
 
 
-
-
-
-
 	public void setZoga(Zoga zoga) {
 		this.zoga = zoga;
 	}
-
-
-
-
-
-
 
 	public  void update(Zoga zoga) {
 		if (this.pc) {

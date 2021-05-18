@@ -10,10 +10,12 @@ public class Zoga {
 	private double smerY;
 	private Frame frame;
 	private double koncna;
+	Rezultat rezultat;
+	
 	Igralec igralec1;
 	
 	
-	public Zoga(double x, double y,  int polmer, double hitrost,double smerX,double smerY,double koncna) {
+	public Zoga(double x, double y,  int polmer, double hitrost,double smerX,double smerY,double koncna,Rezultat rezultat) {
 		this.koncna = koncna/10;
 		this.x = x;
 		this.y = y;
@@ -21,7 +23,7 @@ public class Zoga {
 		this.hitrost = hitrost/10;
 		this.smerX = smerX;
 		this.smerY = smerY;
-	
+		
 	}
 	public void ustaviZazeni() {
 		if (this.getHitrost() != 0.0) {	
@@ -147,29 +149,69 @@ public class Zoga {
 		this.y = this.y + this.hitrost * this.smerY;
 	}
 	
-	public void sprememba(Frame frame,Igralec igralec1,Igralec igralec2) {
+	public void sprememba(Frame frame,Igralec igralec1,Igralec igralec2,Rezultat rezultat) {
 //		èe pride do roba se more spremeniti smerX in smerY
 		int sirina = frame.sir();
 		int visina = frame.vis();
 		if (this.x  > sirina - this.polmer - 15) {
 			if (this.y > igralec1.getPolozaj()) {
-			if (igralec1.getRelVelikost() > Math.abs(this.y - this.polmer -igralec1.getPolozaj()) ) {
+			if (igralec1.getRelVelikost()/2 > Math.abs(this.y - this.polmer -igralec1.getPolozaj()) ) {
+				double razdalja = Math.abs(this.y - this.polmer/2 -igralec1.getPolozaj());
+				double k = Math.abs((razdalja)/igralec1.getRelVelikost()/2);
+				this.smerY =  k;
+				this.smerX = -Math.sqrt(1-this.smerY*this.smerY);
 				
-				this.smerX = -this.getSmerX();
 			}	
 			}
 		
 			else {
-			if (igralec1.getRelVelikost() > Math.abs(this.y -igralec1.getPolozaj()) ) {
-				
-				this.smerX = -this.getSmerX();
+			if (igralec1.getRelVelikost()/2 > Math.abs(this.y -igralec1.getPolozaj()) ) {
+				double razdalja = Math.abs(this.y + this.polmer/2 -igralec1.getPolozaj());
+				double k = Math.abs((razdalja)/igralec1.getRelVelikost()/2);
+				this.smerY = -k ;
+				this.smerX = -Math.sqrt(1-this.smerY*this.smerY);
+//				this.smerX = -Math.abs(this.getSmerX());
+//				this.smerY = Math.sqrt(1-this.smerX*this.smerX);
 			}	
 			}
 		}
-		if (this.x < 15 & igralec2.getRelVelikost() > Math.abs(this.y +this.polmer/2 -igralec2.getPolozaj())) {
-			this.smerX = -this.getSmerX();
+		if (this.x < 15) {
+			if (this.y > igralec1.getPolozaj()) {
+			if(igralec2.getRelVelikost()/2 > Math.abs(this.y +this.polmer -igralec2.getPolozaj())) {
+				double razdalja = Math.abs(this.y - this.polmer/2 -igralec2.getPolozaj());
+				double k = Math.abs((razdalja)/igralec2.getRelVelikost()/2);
+				this.smerY =  k;
+				this.smerX = Math.sqrt(1-this.smerY*this.smerY);
+				
+				
+				
+//				this.smerX = Math.abs(this.getSmerX());
+//				this.smerY = Math.sqrt(1-this.smerX*this.smerX);
+			}
+			}
+			else {
+				if (igralec2.getRelVelikost()/2 > Math.abs(this.y -igralec2.getPolozaj()) ) {
+					double razdalja = Math.abs(this.y - this.polmer/2 -igralec2.getPolozaj());
+					double k = Math.abs((razdalja)/igralec2.getRelVelikost()/2);
+					this.smerY =  -k;
+					this.smerX = Math.sqrt(1-this.smerY*this.smerY);
+					
+//					this.smerX = Math.abs(this.getSmerX());
+//					this.smerY = Math.sqrt(1-this.smerX*this.smerX);
+				
+			}
 		}
-		if (this.x < 0 | this.x > sirina - this.polmer) {
+		}
+		
+		if (this.x < 0-this.polmer/2 | this.x > sirina - this.polmer) {
+			if (this.x < 0-this.polmer/2) {
+				rezultat.setGol2(rezultat.getGol1()+1);
+				System.out.print(rezultat.getGol1());
+			}
+			else {
+				rezultat.setGol1(rezultat.getGol2()+1);
+				
+			}
 			this.ustaviZazeni();
 			int stp1 = new Random().nextBoolean() ? -1 : 1;
 			double st1 = stp1*(0.5 + 0.5*Math.random());
@@ -179,9 +221,10 @@ public class Zoga {
 			this.smerY = st2;
 			this.setX(sirina/2);
 			this.setY(visina/2);
+			
 			}
 		
-		if (this.y < 13 | this.y > visina-this.polmer-90) {
+		if (this.y < 13 | this.y > visina-this.polmer-130) {
 			this.smerY = -this.getSmerY();
 	}
 	}
