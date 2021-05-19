@@ -29,6 +29,8 @@ public class Panel extends JPanel implements KeyListener{
         int polozajY = (int) dim.getHeight()/2;
 
         this.zoga = zoga;
+//        zoga.setX(this.getWidth()/2);
+//        zoga.setY(this.getHeight()/2);
         this.igralec1 = igralec1;
         this.igralec2 = igralec2;
         igralec1.setPolozaj(polozajY/2);
@@ -45,11 +47,11 @@ addMouseListener(new MouseListener() {
     		@Override	
     		public void mousePressed(MouseEvent e) {
     			
-    			String vel1 = sizes.getSelectedItem().toString();
-    			int velikost =   Integer.parseInt(vel1);
-    			zoga.setPolmer(velikost);
-    			
-    			zoga.ustaviZazeni();
+//    			String vel1 = sizes.getSelectedItem().toString();
+//    			int velikost =   Integer.parseInt(vel1);
+//    			zoga.setPolmer(velikost);
+//    			
+//    			zoga.ustaviZazeni();
     			
     			
     		}

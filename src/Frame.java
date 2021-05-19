@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -39,8 +40,9 @@ public class Frame extends JFrame{
         this.zoga = zoga;
         this.setTitle("Pong");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(600, 400);
+        this.setSize(1200, 800);
         this.rezultat = rezultat;
+        
 
 //        this.setPreferredSize(new Dimension(600, 450));
 //        Panel    console    = new Panel();
@@ -49,8 +51,25 @@ public class Frame extends JFrame{
         this.setLayout(new BorderLayout());
         this.setLocation(20, 20);
         JPanel panel1 = new JPanel();
-        panel1.add(new JLabel("Velikost:"));
-    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] { 10,16, 32, 64  });
+        
+        panel1.add(new JLabel("Hitrost:"));
+    	JComboBox<Integer>	speeds1	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
+    	String vel1 = speeds1.getSelectedItem().toString();
+		int s1 =   Integer.parseInt(vel1);
+		igralec2.setHitrost(s1);
+    	speeds1.addActionListener (new ActionListener () {
+    	    public void actionPerformed(ActionEvent e) {
+    	    	String vel1 = speeds1.getSelectedItem().toString();
+    			int s1 =   Integer.parseInt(vel1);
+    			igralec2.setHitrost(s1);
+    	        
+    	    }
+    	});
+    	panel1.add(speeds1);
+        
+        
+        panel1.add(new JLabel("Velikost žoge:"));
+    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
     	sizes.addActionListener (new ActionListener () {
     	    public void actionPerformed(ActionEvent e) {
     	    	String vel1 = sizes.getSelectedItem().toString();
@@ -113,7 +132,7 @@ public class Frame extends JFrame{
     	Color customColor = new Color(200,255,200);
         panel1.setBackground(customColor);
     	JButton button = new JButton("Pause/Start");
-    	button.setPreferredSize(new Dimension(80, 15));
+    	button.setPreferredSize(new Dimension(160, 25));
     	
     	button.addActionListener(new ActionListener() {
     	    @Override
@@ -126,6 +145,36 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(button);
+    	
+		int sirina = this.sir();
+		int visina = this.vis();
+    	
+    	JButton button2 = new JButton("Reset");
+    	button2.setPreferredSize(new Dimension(80, 25));
+    	
+    	button2.addActionListener(new ActionListener() {
+    	    @Override
+    	    public void actionPerformed(ActionEvent e) {
+    	    	if (zoga.getHitrost() != 0) {
+    	    		zoga.ustaviZazeni();
+    	    	}
+    	    	int stp1 = new Random().nextBoolean() ? -1 : 1;
+    			double st1 = stp1*(0.5 + 0.5*Math.random());
+    			int stp2 = new Random().nextBoolean() ? -1 : 1;
+    			double st2 = stp2*(Math.sqrt(1-st1*st1));
+    			zoga.setSmerX(st1);
+    			zoga.setSmerY(st2);
+    			zoga.setX(sirina/2);
+    			zoga.setY(visina/2);
+    	    	button2.setToolTipText("reset");
+    	    	
+    	    	
+//    	        repaint();
+    	    }
+    	});
+    	panel1.add(button2);
+    	
+    	
     	JSlider slider = new JSlider(0, 10, 1);
     	slider.addChangeListener(new ChangeListener() {
     		
@@ -153,6 +202,24 @@ public class Frame extends JFrame{
     	});
     	panel1.add(slider);
     	
+    	panel1.add(new JLabel("Hitrost:"));
+    	JComboBox<Integer>	speeds2	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
+    	String vel2 = speeds2.getSelectedItem().toString();
+		int s2 =   Integer.parseInt(vel2);
+		igralec1.setHitrost(s2);
+    	speeds2.addActionListener (new ActionListener () {
+    	    public void actionPerformed(ActionEvent e) {
+    	    	String vel1 = speeds2.getSelectedItem().toString();
+    			int s2 =   Integer.parseInt(vel1);
+    			igralec1.setHitrost(s2);
+    	        
+    	    }
+    	});
+    	panel1.add(speeds2);
+    	
+    	
+        
+    	
     	
 //    	while (true) {
 //    	    // ...
@@ -178,8 +245,8 @@ public class Frame extends JFrame{
         
         
         zoga.ustaviZazeni();
-        String vel1 = sizes.getSelectedItem().toString();
-		int velikost =   Integer.parseInt(vel1);
+        String vel3 = sizes.getSelectedItem().toString();
+		int velikost =   Integer.parseInt(vel3);
 		zoga.setPolmer(velikost);
 		
 	
@@ -189,7 +256,7 @@ public class Frame extends JFrame{
 		
         Panel panel = new Panel(zoga,igralec1,igralec2,sizes);
         Dimension dim = panel.getSize();
-        double visina = dim.getHeight();
+        double visina1 = dim.getHeight();
         
         
 //        panel.addMouseListener(new MouseListener() {
