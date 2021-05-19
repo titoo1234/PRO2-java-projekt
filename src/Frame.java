@@ -30,7 +30,7 @@ public class Frame extends JFrame{
 	Igralec igralec1;
 	Igralec igralec2;
 	Rezultat rezultat;
-    public Frame(Zoga zoga,Igralec igralec1,Igralec igralec2,Rezultat rezultat) {
+    public Frame(Zoga zoga,Igralec igralec1,Igralec igralec2,Rezultat rezultat, Panel2 panel2) {
     	
         super();
 //        setFocusable(true);
@@ -40,6 +40,7 @@ public class Frame extends JFrame{
         this.setTitle("Pong");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 400);
+        this.rezultat = rezultat;
 
 //        this.setPreferredSize(new Dimension(600, 450));
 //        Panel    console    = new Panel();
@@ -164,24 +165,24 @@ public class Frame extends JFrame{
         
         add (panel1, BorderLayout.NORTH);
 //        JPanel panel2 = new JPanel();
-        JTextField rez = new JTextField();
-        rez.setPreferredSize(new Dimension(140, 30));
-        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+rezultat.getGol2());
-        panel2.repaint();
-        
-        panel2.add(rez);
-        
-        
-        
-        panel2.setBackground(customColor);
+//        JTextField rez = new JTextField();
+//        rez.setPreferredSize(new Dimension(140, 30));
+//        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
+//        panel2.repaint();
+//        panel2.add(rez);
+//        
+//        
+//        
+//        panel2.setBackground(customColor);
         add (panel2, BorderLayout.SOUTH);
+        
         
         zoga.ustaviZazeni();
         String vel1 = sizes.getSelectedItem().toString();
 		int velikost =   Integer.parseInt(vel1);
 		zoga.setPolmer(velikost);
 		
-		
+	
 		
 		
 		

@@ -16,7 +16,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-public class Panel extends JPanel implements KeyListener {
+public class Panel extends JPanel implements KeyListener{
 	Zoga zoga;
 	Igralec igralec1;
 	Igralec igralec2;
@@ -86,11 +86,18 @@ addMouseListener(new MouseListener() {
 			}
 		});
 			
-	
-		
-        addKeyListener(this); 
 
+			
+    
 	}
+	
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	};
+
 	@Override
 	public void keyPressed(KeyEvent evt)
     {System.out.print("asd");
@@ -133,7 +140,13 @@ addMouseListener(new MouseListener() {
               	
               }
 
-    }
+    };
+
+    @Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	};
 	
 	
 	
@@ -182,16 +195,6 @@ addMouseListener(new MouseListener() {
         
         
     }
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 }

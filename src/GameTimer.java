@@ -7,7 +7,7 @@ public class GameTimer {
     private long[] ticks = new long[1000];
     private int first, last;
     private int fps;
-
+    
     public GameTimer(){}
 
     public void start(){

@@ -6,6 +6,7 @@ public class PongGlavniProgram {
 
 	public static void main(String[] args) {
 		Rezultat rezultat = new Rezultat();
+		Panel2 panel2 = new Panel2(rezultat);
 		int stp1 = new Random().nextBoolean() ? -1 : 1;
 		double st1 = stp1*(0.5 + 0.5*Math.random());
 		int stp2 = new Random().nextBoolean() ? -1 : 1;
@@ -13,8 +14,8 @@ public class PongGlavniProgram {
 //		Igralec igralec1 = new Igralec(1,2,50);
 		Igralec igralec1 = new Igralec(1,30,100,10,false);
 		Igralec igralec2 = new Igralec(1,20,100,10,false);
-		Zoga zoga = new Zoga(200,200.20,20,50,st1,st2,50,rezultat);
-		Frame okno = new Frame(zoga,igralec1,igralec2,rezultat);
+		Zoga zoga = new Zoga(200,200.20,20,50,st1,st2,50,rezultat, panel2);
+		Frame okno = new Frame(zoga,igralec1,igralec2,rezultat, panel2);
 		okno.setVisible(true);
 		okno.setFocusable(true);
 		int i = okno.getHeight();

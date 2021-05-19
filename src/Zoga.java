@@ -1,4 +1,7 @@
+import java.awt.Dimension;
 import java.util.Random;
+
+import javax.swing.JTextField;
 
 
 public class Zoga {
@@ -11,11 +14,11 @@ public class Zoga {
 	private Frame frame;
 	private double koncna;
 	Rezultat rezultat;
-	
 	Igralec igralec1;
+	Panel2 panel2;
 	
 	
-	public Zoga(double x, double y,  int polmer, double hitrost,double smerX,double smerY,double koncna,Rezultat rezultat) {
+	public Zoga(double x, double y,  int polmer, double hitrost,double smerX,double smerY,double koncna,Rezultat rezultat, Panel2 panel2) {
 		this.koncna = koncna/10;
 		this.x = x;
 		this.y = y;
@@ -23,6 +26,7 @@ public class Zoga {
 		this.hitrost = hitrost/10;
 		this.smerX = smerX;
 		this.smerY = smerY;
+		this.panel2 = panel2;
 		
 	}
 	public void ustaviZazeni() {
@@ -205,11 +209,18 @@ public class Zoga {
 		
 		if (this.x < 0-this.polmer/2 | this.x > sirina - this.polmer) {
 			if (this.x < 0-this.polmer/2) {
-				rezultat.setGol2(rezultat.getGol1()+1);
+				rezultat.setGol1(rezultat.getGol1()+1);
 				System.out.print(rezultat.getGol1());
+		        JTextField rez = new JTextField();
+		        rez.setPreferredSize(new Dimension(140, 30));
+		        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
+		        
+		        panel2.add(rez);
+		        
 			}
 			else {
-				rezultat.setGol1(rezultat.getGol2()+1);
+				rezultat.setGol2(rezultat.getGol2()+1);
+				System.out.print(rezultat.getGol2());
 				
 			}
 			this.ustaviZazeni();
