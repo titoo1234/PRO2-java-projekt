@@ -4,16 +4,21 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -26,10 +31,14 @@ public class Panel extends JPanel implements KeyListener{
 	JTextField field;
 	JTextField field2;
 	Rezultat rezultat;
+	Image slika;
+	public List<Ikona> ikone;
+	
 	
 	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes,Rezultat rezultat) {
 		super();
-		
+		ikone	= new ArrayList<Ikona>();
+		this.ikone = ikone;
         setBackground(Color.WHITE);
         Dimension dim  = this.getSize();
         int polozajY = (int) dim.getHeight()/2;
@@ -56,10 +65,10 @@ public class Panel extends JPanel implements KeyListener{
 //      field.setVisible(false);
         this.add(field2);
         this.requestFocus();
-       
         
-
-addMouseListener(new MouseListener() {
+        ImageIcon slika = new ImageIcon("Zajeta2.png");
+        panel = this;
+        addMouseListener(new MouseListener() {
 	
     		
     		@Override
@@ -72,9 +81,13 @@ addMouseListener(new MouseListener() {
 //    			String vel1 = sizes.getSelectedItem().toString();
 //    			int velikost =   Integer.parseInt(vel1);
 //    			zoga.setPolmer(velikost);
-//    			
-//    			zoga.ustaviZazeni();
     			
+//    			zoga.ustaviZazeni();
+    			double x =  e.getX();
+    			double y =  e.getY();
+    			
+    			Ikona ikona = new Ikona(x,y,10,4);
+    			panel.ikone.add(ikona);
     			
     		}
     		
@@ -209,7 +222,21 @@ addMouseListener(new MouseListener() {
     		field.setVisible(false);
     		field2.setVisible(false);
     	}
-    	
+    	for(int i = 0; i < ikone.size() ; i++) {
+        	Ikona ikona = ikone.get(i);
+        	double x = ikona.getX();
+        	double y = ikona.getY();
+        	
+//        	int vel = (int) ikona.getStranica(); 
+
+//        	graphics.fillOval((int)x,(int) y,vel, vel);
+        	
+        	//tukaj morma najdit prave slike....
+        	// ko pritisnema reset morma zbrisat use ikone... tud ko se zaleti v kakaega
+        	Image slika  = Toolkit.getDefaultToolkit().getImage("Zajeta2.png");
+        	graphics.drawImage(slika,(int)x-20,(int) y-20,this);
+
+    	}
     		
     	double x = zoga.getX();
     	double y = zoga.getY();

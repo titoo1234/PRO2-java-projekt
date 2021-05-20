@@ -6,6 +6,10 @@ public class PongGlavniProgram {
 
 	public static void main(String[] args) {
 		Rezultat rezultat = new Rezultat();
+		Ikona ikona = new Ikona(5,30,500,100);
+		Ikona ikona2 = new Ikona(5,3,5,1);
+
+
 		Panel2 panel2 = new Panel2(rezultat);
 		int stp1 = new Random().nextBoolean() ? -1 : 1;
 		double st1 = stp1*(0.5 + 0.5*Math.random());

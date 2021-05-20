@@ -16,6 +16,7 @@ public class Zoga {
 	Rezultat rezultat;
 	Igralec igralec1;
 	Panel2 panel2;
+	Panel panel;
 	
 	
 	public Zoga(double x, double y,  int polmer, double hitrost,double smerX,double smerY,double koncna,Rezultat rezultat, Panel2 panel2) {
@@ -28,10 +29,13 @@ public class Zoga {
 		this.smerY = smerY;
 		this.panel2 = panel2;
 		
+		
 	}
 	public void ustaviZazeni() {
 		if (this.getHitrost() != 0.0) {	
 			this.setHitrost(0.0);
+			
+			
 			}
 			else {
 //				System.out.print(zoga.getKoncna());
@@ -212,7 +216,7 @@ public class Zoga {
 				rezultat.setGol1(rezultat.getGol1()+1);
 				System.out.print(rezultat.getGol1());
 		        JTextField rez = new JTextField();
-		        panel2.rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
+		        panel2.rez.setText("Igralec 1: " + rezultat.getGol2()+"  Igralec 2: "+ rezultat.getGol1());
 //		        rez.setPreferredSize(new Dimension(140, 30));
 //		        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
 		        
@@ -221,7 +225,7 @@ public class Zoga {
 			}
 			else {
 				rezultat.setGol2(rezultat.getGol2()+1);
-		        panel2.rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
+		        panel2.rez.setText("Igralec 1: " + rezultat.getGol2()+"  Igralec 2: "+ rezultat.getGol1());
 
 				System.out.print(rezultat.getGol2());
 				
