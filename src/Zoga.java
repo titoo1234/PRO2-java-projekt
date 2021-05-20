@@ -212,14 +212,17 @@ public class Zoga {
 				rezultat.setGol1(rezultat.getGol1()+1);
 				System.out.print(rezultat.getGol1());
 		        JTextField rez = new JTextField();
-		        rez.setPreferredSize(new Dimension(140, 30));
-		        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
+		        panel2.rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
+//		        rez.setPreferredSize(new Dimension(140, 30));
+//		        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
 		        
 		        panel2.add(rez);
 		        
 			}
 			else {
 				rezultat.setGol2(rezultat.getGol2()+1);
+		        panel2.rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
+
 				System.out.print(rezultat.getGol2());
 				
 			}

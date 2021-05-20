@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -30,7 +31,7 @@ public class Frame extends JFrame{
 	JComboBox<Integer>	sizes;
 	Igralec igralec1;
 	Igralec igralec2;
-	Rezultat rezultat;
+	public Rezultat rezultat;
     public Frame(Zoga zoga,Igralec igralec1,Igralec igralec2,Rezultat rezultat, Panel2 panel2) {
     	
         super();
@@ -50,6 +51,11 @@ public class Frame extends JFrame{
         this.setVisible(true);
         this.setLayout(new BorderLayout());
         this.setLocation(20, 20);
+        
+        Panel panel = new Panel(zoga,igralec1,igralec2,sizes,rezultat);
+        panel.requestFocus(true);
+        
+        
         JPanel panel1 = new JPanel();
         
         panel1.add(new JLabel("Hitrost:"));
@@ -62,20 +68,21 @@ public class Frame extends JFrame{
     	    	String vel1 = speeds1.getSelectedItem().toString();
     			int s1 =   Integer.parseInt(vel1);
     			igralec2.setHitrost(s1);
+    			panel.requestFocus(true);
     	        
     	    }
     	});
     	panel1.add(speeds1);
         
         
-        panel1.add(new JLabel("Velikost ûoge:"));
+        panel1.add(new JLabel("Velikost ≈æoge:"));
     	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
     	sizes.addActionListener (new ActionListener () {
     	    public void actionPerformed(ActionEvent e) {
     	    	String vel1 = sizes.getSelectedItem().toString();
     			int velikost =   Integer.parseInt(vel1);
     			zoga.setPolmer(velikost);
-    	        
+    			panel.requestFocus(true);
     	    }
     	});
     	panel1.add(sizes);
@@ -86,6 +93,7 @@ public class Frame extends JFrame{
     	    public void actionPerformed(ActionEvent e) {
     	    	igralec1.spremeniAuto();
     	        panel1.repaint();
+    	        panel.requestFocus(true);
     	    }
     	});
     	panel1.add(check1);
@@ -97,6 +105,7 @@ public class Frame extends JFrame{
     	    public void actionPerformed(ActionEvent e) {
     	    	igralec1.spremeniAuto();
     	        panel1.repaint();
+    	        panel.requestFocus(true);
     	    }
     	    
     	});
@@ -110,6 +119,7 @@ public class Frame extends JFrame{
         	    public void actionPerformed(ActionEvent e) {
         	    	igralec2.spremeniAuto();
         	        panel1.repaint();
+        	        panel.requestFocus(true);
         	    }
         	});
         	panel1.add(check2);
@@ -121,6 +131,7 @@ public class Frame extends JFrame{
         	    public void actionPerformed(ActionEvent e) {
         	    	igralec2.spremeniAuto();
         	        panel1.repaint();
+        	        panel.requestFocus(true);
         	    }
         	    
         	});
@@ -131,14 +142,24 @@ public class Frame extends JFrame{
     	
     	Color customColor = new Color(200,255,200);
         panel1.setBackground(customColor);
-    	JButton button = new JButton("Pause/Start");
-    	button.setPreferredSize(new Dimension(160, 25));
+        ImageIcon slika = new ImageIcon("Zajeta2.png");
+        
+    	JButton button = new JButton(slika);
+    	button.setFont(button.getFont().deriveFont(10.0f));
+    	button.setPreferredSize(new Dimension(50, 40));
+    	
     	
     	button.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
     	    	zoga.ustaviZazeni();
     	    	button.setToolTipText("start");
+    	    	if (rezultat.getGol1() == 3 |rezultat.getGol2() == 3) {
+    	    		rezultat.reset();
+    		        panel2.rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
+
+    	    		panel.requestFocus(true);
+    	    	}
     	    	
     	    	
 //    	        repaint();
@@ -167,6 +188,7 @@ public class Frame extends JFrame{
     			zoga.setX(sirina/2);
     			zoga.setY(visina/2);
     	    	button2.setToolTipText("reset");
+    	    	panel.requestFocus(true);
     	    	
     	    	
 //    	        repaint();
@@ -186,10 +208,12 @@ public class Frame extends JFrame{
     	              if (zoga.getHitrost() == 0) {
     	            	  zoga.setKoncna(hitrost);
     	            	  zoga.setHitrost(hitrost); //ta del lahko zakomentirama
+    	            	  panel.requestFocus(true);
     	              }
     	              else{
     	            	  zoga.setKoncna(hitrost);
         	              zoga.setHitrost(hitrost);
+        	              panel.requestFocus(true);
     	            	  
     	              }
     	              
@@ -212,6 +236,7 @@ public class Frame extends JFrame{
     	    	String vel1 = speeds2.getSelectedItem().toString();
     			int s2 =   Integer.parseInt(vel1);
     			igralec1.setHitrost(s2);
+    			panel.requestFocus(true);
     	        
     	    }
     	});
@@ -241,6 +266,7 @@ public class Frame extends JFrame{
 //        
 //        
 //        panel2.setBackground(customColor);
+        
         add (panel2, BorderLayout.SOUTH);
         
         
@@ -254,9 +280,9 @@ public class Frame extends JFrame{
 		
 		
 		
-        Panel panel = new Panel(zoga,igralec1,igralec2,sizes);
-        Dimension dim = panel.getSize();
-        double visina1 = dim.getHeight();
+        
+//        Dimension dim = panel.getSize();
+//        double visina1 = dim.getHeight();
         
         
 //        panel.addMouseListener(new MouseListener() {
@@ -301,7 +327,7 @@ public class Frame extends JFrame{
 ////        			int velikost =   Integer.parseInt(vel1);
 ////        			zoga.setPolmer(velikost);
 ////                	zoga.ustaviZazeni();
-//                	if (!(igralec1.isPc())){//ni raËunalnik
+//                	if (!(igralec1.isPc())){//ni raƒçunalnik
 //                	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
 //                	panel1.repaint();
 //                	}

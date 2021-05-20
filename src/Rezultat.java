@@ -38,7 +38,7 @@ public class Rezultat {
 
 
 	public void reset() {
-		int gol1 = 0;
-		int gol2 = 0;
+		this.gol1 = 0;
+		this.gol2 = 0;
  }
 }

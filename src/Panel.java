@@ -1,3 +1,4 @@
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,13 +16,18 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Panel extends JPanel implements KeyListener{
 	Zoga zoga;
 	Igralec igralec1;
 	Igralec igralec2;
 	JComboBox<Integer>	sizes;
-	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes) {
+	JTextField field;
+	JTextField field2;
+	Rezultat rezultat;
+	
+	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes,Rezultat rezultat) {
 		super();
 		
         setBackground(Color.WHITE);
@@ -36,6 +42,22 @@ public class Panel extends JPanel implements KeyListener{
         igralec1.setPolozaj(polozajY/2);
         igralec2.setPolozaj(polozajY/2);
         this.setFocusable(true);
+        this.rezultat = rezultat;
+        field = new JTextField(8);
+//        field.setBounds(500, 5, 280, 50); // to get height, set large font
+        
+        field.setFont(field.getFont().deriveFont(50f));
+//        field.setVisible(false);
+        this.add(field);
+        field2 = new JTextField(8);
+//      field.setBounds(500, 5, 280, 50); // to get height, set large font
+      
+        field2.setFont(field.getFont().deriveFont(50f));
+//      field.setVisible(false);
+        this.add(field2);
+        this.requestFocus();
+       
+        
 
 addMouseListener(new MouseListener() {
 	
@@ -99,7 +121,7 @@ addMouseListener(new MouseListener() {
 		// TODO Auto-generated method stub
 		
 	};
-
+	
 	@Override
 	public void keyPressed(KeyEvent evt)
     {System.out.print("asd");
@@ -109,7 +131,7 @@ addMouseListener(new MouseListener() {
 //			int velikost =   Integer.parseInt(vel1);
 //			zoga.setPolmer(velikost);
 //        	zoga.ustaviZazeni();
-        	if (!(igralec1.isPc())){//ni ra�unalnik
+        	if (!(igralec1.isPc())){//ni računalnik
         	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
         	System.out.print("asd");
         	repaint();
@@ -154,13 +176,41 @@ addMouseListener(new MouseListener() {
 	
 	
 	
-	
+	Panel panel = this;
     @Override
     public void paint(Graphics g) {
     	super.paint(g); // klic metode nadrazreda
 
     	Graphics2D graphics = (Graphics2D)g; // pretvarjanje tipov
+    	if (rezultat.getGol2() == 3) {
+    		field.setVisible(true);
+    		
+			field.setLocation(panel.getWidth()/6, panel.getHeight()/2);
+    		field.setText("☻ ZMAGA ☻");
+    		field2.setVisible(true);
+    		
+			field2.setLocation(panel.getWidth()*4/6, panel.getHeight()/2);
+    		field2.setText("😢 PORAZ 😭");
+    	}
+//    		setBackground(shadow);
+//    		((Graphics2D) g).setComposite(AlphaComposite.SrcOver.derive(0.2f));
+    		else if (rezultat.getGol1() == 3) {	
+    			field.setVisible(true);
+        		
+    			field.setLocation(panel.getWidth()/6, panel.getHeight()/2);
+        		field.setText("😢 PORAZ 😭");
+        		field2.setVisible(true);
+        		
+    			field2.setLocation(panel.getWidth()*4/6, panel.getHeight()/2);
+        		field2.setText("☻ ZMAGA ☻");
+    			
+    	}
+    	else {
+    		field.setVisible(false);
+    		field2.setVisible(false);
+    	}
     	
+    		
     	double x = zoga.getX();
     	double y = zoga.getY();
     	int r = zoga.getPolmer();
@@ -193,10 +243,13 @@ addMouseListener(new MouseListener() {
         
         graphics.drawRect(0, polozajY-sirina, polozajX, sirina);
         graphics.fillRect(0, polozajY-sirina, polozajX, sirina);
+        
+        
       
         
         
     }
+    
 
 
 }

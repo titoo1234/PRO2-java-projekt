@@ -132,10 +132,10 @@ public class Igralec {
 	public  void update(Zoga zoga) {
 		if (this.pc) {
 		if (zoga.getY() +zoga.getPolmer()/2< this.polozaj) { //zoga je visje
-			this.polozaj = this.polozaj - this.hitrost/7;//Math.min(this.hitrost/7, this.polozaj - ((zoga.getY() + zoga.getPolmer()/2));
+			this.polozaj = this.polozaj - Math.min(this.hitrost/7,Math.abs((int)(this.polozaj+zoga.getY())));
 		}
 		else {
-			this.polozaj = this.polozaj + this.hitrost/7;
+			this.polozaj = this.polozaj + Math.min(this.hitrost/7,Math.abs((int)(this.polozaj-zoga.getY())));
 		}
 		}
 		

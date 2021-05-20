@@ -9,10 +9,12 @@ public class Panel2 extends JPanel {
 	
 	Rezultat rezultat;
 	Color customColor = new Color(200,255,200);
+	JTextField rez;
 	
 	public Panel2(Rezultat rezultat) {
 		
         JTextField rez = new JTextField();
+        this.rez = rez;
         rez.setPreferredSize(new Dimension(140, 30));
         rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
         
