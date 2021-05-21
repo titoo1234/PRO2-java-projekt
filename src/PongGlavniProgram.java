@@ -6,8 +6,8 @@ public class PongGlavniProgram {
 
 	public static void main(String[] args) {
 		Rezultat rezultat = new Rezultat();
-		Ikona ikona = new Ikona(5,30,500,100);
-		Ikona ikona2 = new Ikona(5,3,5,1);
+		Ikona ikona = new Ikona(5,30,500,100 ,"malizajc.png");
+		Ikona ikona2 = new Ikona(5,3,5,1, "malipolz.png");
 
 
 		Panel2 panel2 = new Panel2(rezultat);

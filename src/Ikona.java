@@ -6,16 +6,28 @@ public class Ikona{
 	double y;
 	double stranica;
 	int pomen;
+	String kateraslika;
 	
 	
-	public Ikona(double x, double y,double stranica,int pomen) {
+	public Ikona(double x, double y,double stranica,int pomen, String slika) {
 		this.x = x;
 		this.y = y;
 		this.stranica = stranica;
 		this.pomen = pomen; // èe 1-> hitrost zoge; 2-> ovira 3-> upoèasni tekmovalca
 //		(naredi v igralcu metodo upoèasni ki dela za 5 s...)
+		this.kateraslika = slika;
+		
 	}
 
+	
+	public String getKateraslika() {
+		return kateraslika;
+	}
+
+
+	public void setKateraslika(String slika) {
+		this.kateraslika = slika;
+	}
 
 	public double getX() {
 		return x;
@@ -55,5 +67,7 @@ public class Ikona{
 	public void setPomen(int pomen) {
 		this.pomen = pomen;
 	}
+	
+
 	
 }

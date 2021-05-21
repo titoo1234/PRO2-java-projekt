@@ -242,7 +242,6 @@ public class Frame extends JFrame{
     	});
     	panel1.add(speeds2);
     	
-    	
         
     	
     	

@@ -150,9 +150,39 @@ public class Igralec {
 			this.pc = true;
 		}
 	}
+	
+	
+/*
+	
+	public void upocasni() {
+		long zacetnicas = System.currentTimeMillis();
+		int zacetnahitrost = this.getHitrost();
+		this.setHitrost(this.getHitrost() - 25);
+		while(true) {
+			if (System.currentTimeMillis() - zacetnicas > 5) {
+				break;
+			}
+		this.setHitrost(zacetnahitrost);
+		}
+		
+	}
+	
+	
+	public void pospesi() {
+		long zacetnicas = System.currentTimeMillis();
+		int zacetnahitrost = this.getHitrost();
+		this.setHitrost(this.getHitrost() + 25);
+		while(true) {
+			if (System.currentTimeMillis() - zacetnicas > 5) {
+				break;
+			}
+		this.setHitrost(zacetnahitrost);
+		}
+		
+	}
 		
 	
-	
+*/	
 	
 	
 	

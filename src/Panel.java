@@ -35,10 +35,26 @@ public class Panel extends JPanel implements KeyListener{
 	public List<Ikona> ikone;
 	
 	
+	
 	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes,Rezultat rezultat) {
 		super();
 		ikone	= new ArrayList<Ikona>();
 		this.ikone = ikone;
+		List<String> mozneikone = new ArrayList<String>();
+		mozneikone.add("malizajc.png");
+		mozneikone.add("malipolz.png");
+		//mozneikone.add("malizajc.png");
+/*		long zacetnicas = System.currentTimeMillis();
+		while(true) {
+			if (System.currentTimeMillis() - zacetnicas > 3) {
+				break;
+			}
+			
+		this.setHitrost(zacetnahitrost);
+		}
+		
+	}
+	*/
         setBackground(Color.WHITE);
         Dimension dim  = this.getSize();
         int polozajY = (int) dim.getHeight()/2;
@@ -85,8 +101,11 @@ public class Panel extends JPanel implements KeyListener{
 //    			zoga.ustaviZazeni();
     			double x =  e.getX();
     			double y =  e.getY();
+    			String slika = mozneikone.get((int)(2.0 *	Math.random()));
     			
-    			Ikona ikona = new Ikona(x,y,10,4);
+    			
+    			
+    			Ikona ikona = new Ikona(x,y,10,4, slika);
     			panel.ikone.add(ikona);
     			
     		}
@@ -233,7 +252,7 @@ public class Panel extends JPanel implements KeyListener{
         	
         	//tukaj morma najdit prave slike....
         	// ko pritisnema reset morma zbrisat use ikone... tud ko se zaleti v kakaega
-        	Image slika  = Toolkit.getDefaultToolkit().getImage("Zajeta2.png");
+        	Image slika  = Toolkit.getDefaultToolkit().getImage(ikona.getKateraslika());
         	graphics.drawImage(slika,(int)x-20,(int) y-20,this);
 
     	}
