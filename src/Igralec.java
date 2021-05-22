@@ -152,38 +152,35 @@ public class Igralec {
 	}
 	
 	
-/*
+
+	//narobe
+//	public void upocasni() {
+//		long zacetnicas = System.currentTimeMillis();
+//		this.setHitrost(this.getHitrost() - 150);
+//		while(true) {
+//			if (System.currentTimeMillis() - zacetnicas > 5000) {
+//				this.setHitrost(this.getHitrost() + 150);
+//				break;
+//			}
+//		}
+//		
+//	}
+//	
+//	
+//	public void pospesi() {
+//		long zacetnicas = System.currentTimeMillis();
+//		this.setHitrost(this.getHitrost() + 150);
+//		while(true) {
+//			if (System.currentTimeMillis() - zacetnicas > 5000) {
+//				break;
+//			}
+//		this.setHitrost(this.getHitrost() - 150);
+//		}
+//		
+//	}
+//		
 	
-	public void upocasni() {
-		long zacetnicas = System.currentTimeMillis();
-		int zacetnahitrost = this.getHitrost();
-		this.setHitrost(this.getHitrost() - 25);
-		while(true) {
-			if (System.currentTimeMillis() - zacetnicas > 5) {
-				break;
-			}
-		this.setHitrost(zacetnahitrost);
-		}
-		
-	}
-	
-	
-	public void pospesi() {
-		long zacetnicas = System.currentTimeMillis();
-		int zacetnahitrost = this.getHitrost();
-		this.setHitrost(this.getHitrost() + 25);
-		while(true) {
-			if (System.currentTimeMillis() - zacetnicas > 5) {
-				break;
-			}
-		this.setHitrost(zacetnahitrost);
-		}
-		
-	}
-		
-	
-*/	
-	
+
 	
 	
 

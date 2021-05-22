@@ -16,12 +16,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 
 public class Panel extends JPanel implements KeyListener{
 	Zoga zoga;
@@ -33,6 +36,10 @@ public class Panel extends JPanel implements KeyListener{
 	Rezultat rezultat;
 	Image slika;
 	public List<Ikona> ikone;
+	List<String> mozneikone = new ArrayList<String>();
+	long zacetnicas = System.currentTimeMillis();
+//	List<Integer> ig1_hitrosti = new ArrayList<Integer>();
+//	List<Double> ig1_cas = new ArrayList<Double>();
 	
 	
 	
@@ -40,21 +47,16 @@ public class Panel extends JPanel implements KeyListener{
 		super();
 		ikone	= new ArrayList<Ikona>();
 		this.ikone = ikone;
-		List<String> mozneikone = new ArrayList<String>();
-		mozneikone.add("malizajc.png");
-		mozneikone.add("malipolz.png");
-		//mozneikone.add("malizajc.png");
-/*		long zacetnicas = System.currentTimeMillis();
-		while(true) {
-			if (System.currentTimeMillis() - zacetnicas > 3) {
-				break;
-			}
-			
-		this.setHitrost(zacetnahitrost);
-		}
+		mozneikone.add("zajc36x36.png");
+		mozneikone.add("pol36x36.png");
 		
-	}
-	*/
+//		Ikona ikona = new Ikona(x1,y1,10,4, slika);
+	//	panel.ikone.add(ikona);
+//		Ikona a = new Ikona(600, 400, 10, 4, "zajc36x36.png");
+	//	this.ikone.add(a);
+		
+		
+	
         setBackground(Color.WHITE);
         Dimension dim  = this.getSize();
         int polozajY = (int) dim.getHeight()/2;
@@ -82,7 +84,7 @@ public class Panel extends JPanel implements KeyListener{
         this.add(field2);
         this.requestFocus();
         
-        ImageIcon slika = new ImageIcon("Zajeta2.png");
+//        ImageIcon slika = new ImageIcon("Zajeta2.png");
         panel = this;
         addMouseListener(new MouseListener() {
 	
@@ -99,15 +101,15 @@ public class Panel extends JPanel implements KeyListener{
 //    			zoga.setPolmer(velikost);
     			
 //    			zoga.ustaviZazeni();
-    			double x =  e.getX();
-    			double y =  e.getY();
-    			String slika = mozneikone.get((int)(2.0 *	Math.random()));
-    			
-    			
-    			
-    			Ikona ikona = new Ikona(x,y,10,4, slika);
-    			panel.ikone.add(ikona);
-    			
+//    			double x =  e.getX();
+//    			double y =  e.getY();
+//    			String slika = mozneikone.get((int)(2.0 *	Math.random()));
+//    			
+//    			
+//    			
+//    			Ikona ikona = new Ikona(x,y,10,4, slika);
+//    			panel.ikone.add(ikona);
+//    			
     		}
     		
     		@Override
@@ -291,11 +293,63 @@ public class Panel extends JPanel implements KeyListener{
         graphics.fillRect(0, polozajY-sirina, polozajX, sirina);
         
         
-      
+		if (System.currentTimeMillis() - zacetnicas > 3000) {
+			double randomx =  (int)(600.0 * Math.random() + 300);
+			double randomy =  (int)(600.0 * Math.random() + 25);
+			String randomslika = mozneikone.get((int)(2.0 *	Math.random()));
+		
+		
+			//Ikona ikona = new Ikona(x1,y1,10,4, randomslika);
+			Ikona a = new Ikona(randomx, randomy, 10, 4, randomslika);
+			panel.ikone.add(a);
+				
+			zacetnicas = System.currentTimeMillis();
+			}
+		
+		
+		
+		for(int i = 0; i < ikone.size() ; i++) {
+			double sredisce_zogaX = zoga.getX() + zoga.getPolmer()/2;
+			double sredisce_zogaY = zoga.getY() + zoga.getPolmer()/2;
+        	Ikona ikona = ikone.get(i);
+        	double ikonax = ikona.getX();
+        	double ikonay = ikona.getY();
+//        	System.out.println(i);
+//        	System.out.println(ikonax);
+//        	System.out.println(sredisce_zogaX);
+        	//double razdalja = (sredisce_zogaX - ikonax)(sredisce_zogaX - ikonax) + (sredisce_zogaY - ikonay)(sredisce_zogaY - ikonay);
+        	
+//        	if (Math.sqrt((sredisce_zogaX - ikonax) + (sredisce_zogaY - ikonay)) < zoga.getPolmer() + 25) {
+//        		break;
+//        	}
+
+        	double u = (sredisce_zogaX - ikonax) * (sredisce_zogaX - ikonax);
+        	double v = (sredisce_zogaY - ikonay) * (sredisce_zogaY - ikonay);
+        	double razdalja = Math.sqrt(u + v);
+        	
+        	if (razdalja < zoga.getPolmer() + 25) {
+        		
+        		if (ikona.getKateraslika() == "zajc36x36.png") {
+        			//ig1_hitrosti.add(150);
+        			//ig1_cas.add((double)System.currentTimeMillis());
+        			
+        			igralec1.setHitrost(igralec1.getHitrost() + 25);
+        		}
+        		
+        		if (ikona.getKateraslika() == "pol36x36.png") {
+        			igralec1.setHitrost(igralec1.getHitrost() - 5);
+        		}
+        		
+        		ikone.remove(i);
+        		
+        		
+        	}
+
+        
         
         
     }
     
 
-
+    }
 }

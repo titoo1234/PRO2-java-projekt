@@ -190,6 +190,8 @@ public class Frame extends JFrame{
     	    	button2.setToolTipText("reset");
     	    	panel.requestFocus(true);
     	    	
+    	    	panel.ikone.clear(); // hitrosti se more nastavit nazaj
+    	    	
     	    	
 //    	        repaint();
     	    }
@@ -207,7 +209,7 @@ public class Frame extends JFrame{
     	              int hitrost = (int)source.getValue();
     	              if (zoga.getHitrost() == 0) {
     	            	  zoga.setKoncna(hitrost);
-    	            	  zoga.setHitrost(hitrost); //ta del lahko zakomentirama
+    	            	  //zoga.setHitrost(hitrost); //ta del lahko zakomentirama
     	            	  panel.requestFocus(true);
     	              }
     	              else{

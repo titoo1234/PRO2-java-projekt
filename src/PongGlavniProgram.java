@@ -24,6 +24,7 @@ public class PongGlavniProgram {
 		okno.setFocusable(true);
 		int i = okno.getHeight();
 		System.out.print(i);
+		System.out.print(okno.getWidth());
 //		int i = okno.BorderLayout.CENTER.HEIGHT;
 		
 		double desiredFPS = 50d;
