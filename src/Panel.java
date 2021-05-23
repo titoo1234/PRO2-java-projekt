@@ -55,7 +55,7 @@ public class Panel extends JPanel implements KeyListener{
 //		Ikona a = new Ikona(600, 400, 10, 4, "zajc36x36.png");
 	//	this.ikone.add(a);
 		
-		
+		this.requestFocus(true);
 	
         setBackground(Color.WHITE);
         Dimension dim  = this.getSize();
@@ -83,6 +83,9 @@ public class Panel extends JPanel implements KeyListener{
 //      field.setVisible(false);
         this.add(field2);
         this.requestFocus();
+        setFocusable(true);
+        requestFocus();
+        addKeyListener(this);
         
 //        ImageIcon slika = new ImageIcon("Zajeta2.png");
         panel = this;
@@ -158,24 +161,25 @@ public class Panel extends JPanel implements KeyListener{
 	
 	@Override
 	public void keyPressed(KeyEvent evt)
-    {System.out.print("asd");
+    {
         if(evt.getKeyCode() == KeyEvent.VK_UP)
-        {System.out.print("asd");
+        {
 //        	String vel1 = sizes.getSelectedItem().toString();
 //			int velikost =   Integer.parseInt(vel1);
 //			zoga.setPolmer(velikost);
 //        	zoga.ustaviZazeni();
         	if (!(igralec1.isPc())){//ni računalnik
         	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
-        	System.out.print("asd");
+//        	System.out.print("asd");
         	repaint();
+        	this.requestFocus(true);
         	}
         }
         	if(evt.getKeyCode() == KeyEvent.VK_S)
               {
               	if (!(igralec2.isPc())){
               	igralec2.setPolozaj(igralec2.getPolozaj() + igralec2.getHitrost());
-              	
+              	this.requestFocus(true);
               	repaint();
               	}
 	
@@ -185,6 +189,7 @@ public class Panel extends JPanel implements KeyListener{
               	if (!(igralec2.isPc())){
               	igralec2.setPolozaj(igralec2.getPolozaj() - igralec2.getHitrost());
               	repaint();
+              	this.requestFocus(true);
               	}
               	
               }
@@ -194,6 +199,7 @@ public class Panel extends JPanel implements KeyListener{
               	if (!(igralec1.isPc())){
               	igralec1.setPolozaj(igralec1.getPolozaj() + igralec1.getHitrost());
               	repaint();
+              	this.requestFocus(true);
               	}
               	
               }

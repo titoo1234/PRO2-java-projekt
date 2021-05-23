@@ -154,6 +154,7 @@ public class Frame extends JFrame{
     	    public void actionPerformed(ActionEvent e) {
     	    	zoga.ustaviZazeni();
     	    	button.setToolTipText("start");
+    	    	panel.requestFocus(true);
     	    	if (rezultat.getGol1() == 3 |rezultat.getGol2() == 3) {
     	    		rezultat.reset();
     		        panel2.rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
@@ -318,70 +319,75 @@ public class Frame extends JFrame{
 //    		}
 //        
 //    	});
-//        addKeyListener(new KeyAdapter() 
-//        {
-//            public void keyPressed(KeyEvent evt)
-//            {
-//                if(evt.getKeyCode() == KeyEvent.VK_UP)
-//                {
-////                	String vel1 = sizes.getSelectedItem().toString();
-////        			int velikost =   Integer.parseInt(vel1);
-////        			zoga.setPolmer(velikost);
-////                	zoga.ustaviZazeni();
-//                	if (!(igralec1.isPc())){//ni računalnik
-//                	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
-//                	panel1.repaint();
-//                	}
-//                	
-//                	
-//                }
-//            }
-//        });
-//        addKeyListener(new KeyAdapter() 
-//        {
-//            public void keyPressed(KeyEvent evt)
-//            {
-//                if(evt.getKeyCode() == KeyEvent.VK_DOWN)
-//                {
-//                	if (!(igralec1.isPc())){
-//                	igralec1.setPolozaj(igralec1.getPolozaj() + igralec1.getHitrost());
-//                	panel1.repaint();
-//                	}
-//                	
-//                }
-//            }
-//        });
-//        addKeyListener(new KeyAdapter() 
-//        {
-//            public void keyPressed(KeyEvent evt)
-//            {
-//                if(evt.getKeyCode() == KeyEvent.VK_W)
-//                {
-//                	if (!(igralec2.isPc())){
-//                	igralec2.setPolozaj(igralec2.getPolozaj() - igralec2.getHitrost());
-//                	panel1.repaint();
-//                	}
-//                	
-//                }
-//            }
-//        });
-//        addKeyListener(new KeyAdapter() 
-//        {
-//            public void keyPressed(KeyEvent evt)
-//            {
-//                if(evt.getKeyCode() == KeyEvent.VK_S)
-//                {
-//                	if (!(igralec2.isPc())){
-//                	igralec2.setPolozaj(igralec2.getPolozaj() + igralec2.getHitrost());
-//                	
-//                	panel1.repaint();
-//                	}
-//                	
-//                }
-//            }
-//        });
-//        
+
+//		panel.addKeyListener(new KeyAdapter() 
+//		        {
+//			public void keyPressed(KeyEvent evt)
+//          {panel.requestFocus(true);
+//              if(evt.getKeyCode() == KeyEvent.VK_UP)
+//              {
+////              	String vel1 = sizes.getSelectedItem().toString();
+////      			int velikost =   Integer.parseInt(vel1);
+////      			zoga.setPolmer(velikost);
+////              	zoga.ustaviZazeni();
+//              	if (!(igralec1.isPc())){//ni računalnik
+//              	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
+//              	panel1.repaint();
+//              	panel.requestFocus(true);
+//              	}
+//              	
+//              	
+//              }
+//          }
+//      });
+//      addKeyListener(new KeyAdapter() 
+//      {
+//          public void keyPressed(KeyEvent evt)
+//          
+//          {
+//              if(evt.getKeyCode() == KeyEvent.VK_DOWN)
+//              {
+//              	if (!(igralec1.isPc())){
+//              	igralec1.setPolozaj(igralec1.getPolozaj() + igralec1.getHitrost());
+//              	panel1.repaint();
+//              	panel.requestFocus(true);
+//              	}
+//              	
+//              }
+//          }
+//      });
+//      addKeyListener(new KeyAdapter() 
+//      {
+//          public void keyPressed(KeyEvent evt)
+//          {
+//              if(evt.getKeyCode() == KeyEvent.VK_W)
+//              {
+//              	if (!(igralec2.isPc())){
+//              	igralec2.setPolozaj(igralec2.getPolozaj() - igralec2.getHitrost());
+//              	panel1.repaint();
+//              	}
+//              	
+//              }
+//          }
+//      });
+//      addKeyListener(new KeyAdapter() 
+//      {
+//          public void keyPressed(KeyEvent evt)
+//          {
+//              if(evt.getKeyCode() == KeyEvent.VK_S)
+//              {
+//              	if (!(igralec2.isPc())){
+//              	igralec2.setPolozaj(igralec2.getPolozaj() + igralec2.getHitrost());
+//              	
+//              	panel1.repaint();
+//              	}
+//              	
+//              }
+//          }
+//      });
+		
         add (panel, BorderLayout.CENTER);
+        panel.requestFocus(true);
       
     }
     public int vis() {
