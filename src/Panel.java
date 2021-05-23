@@ -49,6 +49,7 @@ public class Panel extends JPanel implements KeyListener{
 		this.ikone = ikone;
 		mozneikone.add("zajc36x36.png");
 		mozneikone.add("pol36x36.png");
+		mozneikone.add("odboj36x36.png");
 		
 //		Ikona ikona = new Ikona(x1,y1,10,4, slika);
 	//	panel.ikone.add(ikona);
@@ -302,7 +303,7 @@ public class Panel extends JPanel implements KeyListener{
 		if (System.currentTimeMillis() - zacetnicas > 3000) {
 			double randomx =  (int)(600.0 * Math.random() + 300);
 			double randomy =  (int)(600.0 * Math.random() + 25);
-			String randomslika = mozneikone.get((int)(2.0 *	Math.random()));
+			String randomslika = mozneikone.get((int)(3.0 *	Math.random()));
 		
 		
 			//Ikona ikona = new Ikona(x1,y1,10,4, randomslika);
@@ -344,6 +345,11 @@ public class Panel extends JPanel implements KeyListener{
         		
         		if (ikona.getKateraslika() == "pol36x36.png") {
         			igralec1.setHitrost(igralec1.getHitrost() - 5);
+        		}
+        		
+        		if (ikona.getKateraslika() == "odboj36x36.png") {
+        			zoga.setSmerY(-zoga.getSmerY()); // lahk nardima vec moznih odbojev, tut za x smer alpa random kaj
+        			
         		}
         		
         		ikone.remove(i);
