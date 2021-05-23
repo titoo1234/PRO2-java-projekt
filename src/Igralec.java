@@ -3,13 +3,13 @@ public class Igralec {
 	int st;
 	int hitrost;
 	int relVelikost;
-	int polozaj;
+	double polozaj;
 	boolean pc;
 	Zoga zoga;
 	
 
 	
-	public Igralec(int st,int hitrost,int relVelikost,int polozaj,boolean pc){
+	public Igralec(int st,int hitrost,int relVelikost,double polozaj,boolean pc){
 		this.pc = pc;
 		this.polozaj = polozaj;
 		this.st = st;
@@ -79,7 +79,7 @@ public class Igralec {
 
 
 
-	public int getPolozaj() {
+	public double getPolozaj() {
 		return polozaj;
 	}
 
@@ -89,8 +89,11 @@ public class Igralec {
 
 
 
-	public void setPolozaj(int polozaj) {
-		this.polozaj = polozaj;
+	public void setPolozaj(double d) {
+		if (d < this.getPolozaj()) {
+			this.polozaj = Math.max(d,0);
+		}
+		else this.polozaj = d;
 	}
 
 
@@ -131,11 +134,15 @@ public class Igralec {
 
 	public  void update(Zoga zoga) {
 		if (this.pc) {
-		if (zoga.getY() +zoga.getPolmer()/2< this.polozaj) { //zoga je visje
-			this.polozaj = this.polozaj - Math.min(this.hitrost/7,Math.abs((int)(this.polozaj+zoga.getY())));
+		if (zoga.getY() +zoga.getPolmer()/2 == this.polozaj) {
+			
+		}
+		else if (zoga.getY() +zoga.getPolmer()/2 < this.polozaj) { //zoga je visje
+			
+			this.polozaj = this.polozaj - Math.min(this.hitrost/7,Math.abs((double)(this.polozaj-zoga.getY())));
 		}
 		else {
-			this.polozaj = this.polozaj + Math.min(this.hitrost/7,Math.abs((int)(this.polozaj-zoga.getY())));
+			this.polozaj = this.polozaj + Math.min(this.hitrost/7,Math.abs((double)(this.polozaj-zoga.getY())));
 		}
 		}
 		

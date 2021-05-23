@@ -29,6 +29,8 @@ public class Frame extends JFrame{
 	Panel panel;
 	JPanel panel2;
 	JComboBox<Integer>	sizes;
+	JComboBox<Integer>	speeds1;
+	JComboBox<Integer>	speeds2;
 	Igralec igralec1;
 	Igralec igralec2;
 	public Rezultat rezultat;
@@ -60,6 +62,7 @@ public class Frame extends JFrame{
         
         panel1.add(new JLabel("Hitrost:"));
     	JComboBox<Integer>	speeds1	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
+    	this.speeds1 = speeds1;
     	String vel1 = speeds1.getSelectedItem().toString();
 		int s1 =   Integer.parseInt(vel1);
 		igralec2.setHitrost(s1);
@@ -231,6 +234,7 @@ public class Frame extends JFrame{
     	
     	panel1.add(new JLabel("Hitrost:"));
     	JComboBox<Integer>	speeds2	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
+    	this.speeds2 = speeds2;
     	String vel2 = speeds2.getSelectedItem().toString();
 		int s2 =   Integer.parseInt(vel2);
 		igralec1.setHitrost(s2);

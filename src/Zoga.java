@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 public class Zoga {
 	private double	x;	
 	private double	y;
-	private int	polmer;
+	private double	polmer;
 	private double hitrost;
 	private double smerX;
 	private double smerY;
@@ -19,7 +19,7 @@ public class Zoga {
 	Panel panel;
 	
 	
-	public Zoga(double x, double y,  int polmer, double hitrost,double smerX,double smerY,double koncna,Rezultat rezultat, Panel2 panel2) {
+	public Zoga(double x, double y,  double polmer, double hitrost,double smerX,double smerY,double koncna,Rezultat rezultat, Panel2 panel2) {
 		this.koncna = koncna/10;
 		this.x = x;
 		this.y = y;
@@ -135,7 +135,7 @@ public class Zoga {
 		return y;
 	}
 
-	public int getPolmer() {
+	public double getPolmer() {
 		return polmer;
 	}
 
@@ -239,6 +239,13 @@ public class Zoga {
 			this.smerY = st2;
 			this.setX(sirina/2);
 			this.setY(visina/2);
+			String vel1 = frame.speeds1.getSelectedItem().toString();
+			int s1 =   Integer.parseInt(vel1);
+			igralec1.setHitrost(s1);
+			String vel2 = frame.speeds2.getSelectedItem().toString();
+			int s2 =   Integer.parseInt(vel2);
+			igralec2.setHitrost(s2);
+			
 			
 			}
 		

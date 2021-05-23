@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Panel;
 import java.util.Random;
 
 public class PongGlavniProgram {
@@ -30,6 +31,7 @@ public class PongGlavniProgram {
 		double desiredFPS = 50d;
 		long sleep = (long) (GameTimer.ONE_SECOND / desiredFPS);
 		GameTimer timer = new GameTimer();
+		
 		
 		timer.start();
 		try {

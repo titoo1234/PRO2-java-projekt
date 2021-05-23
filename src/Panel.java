@@ -18,6 +18,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
@@ -43,13 +44,28 @@ public class Panel extends JPanel implements KeyListener{
 	
 	
 	
+	
 	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes,Rezultat rezultat) {
 		super();
 		ikone	= new ArrayList<Ikona>();
-		this.ikone = ikone;
+//		this.ikone = ikone;
 		mozneikone.add("zajc36x36.png");
 		mozneikone.add("pol36x36.png");
 		mozneikone.add("odboj36x36.png");
+		mozneikone.add("zajc36x36blue.png");
+		mozneikone.add("zajc36x36red.png");
+		mozneikone.add("zajc36x36green.png");
+		mozneikone.add("pol36x36blue.png");
+		mozneikone.add("pol36x36red.png");
+		mozneikone.add("pol36x36green.png");
+		mozneikone.add("odbojblue36x36.jpg");
+		mozneikone.add("odbojgreen36x36.jpg");
+		mozneikone.add("odbojred36x36.jpg");
+		
+		
+
+
+		
 		
 //		Ikona ikona = new Ikona(x1,y1,10,4, slika);
 	//	panel.ikone.add(ikona);
@@ -179,7 +195,7 @@ public class Panel extends JPanel implements KeyListener{
         	if(evt.getKeyCode() == KeyEvent.VK_S)
               {
               	if (!(igralec2.isPc())){
-              	igralec2.setPolozaj(igralec2.getPolozaj() + igralec2.getHitrost());
+              	igralec2.setPolozaj(Math.min(igralec2.getPolozaj() + igralec2.getHitrost(),panel.getHeight()));
               	this.requestFocus(true);
               	repaint();
               	}
@@ -188,9 +204,10 @@ public class Panel extends JPanel implements KeyListener{
         	if(evt.getKeyCode() == KeyEvent.VK_W)
               {
               	if (!(igralec2.isPc())){
-              	igralec2.setPolozaj(igralec2.getPolozaj() - igralec2.getHitrost());
-              	repaint();
-              	this.requestFocus(true);
+              		
+	              	igralec2.setPolozaj(igralec2.getPolozaj() - igralec2.getHitrost());
+	              	repaint();
+	              	this.requestFocus(true);
               	}
               	
               }
@@ -198,7 +215,7 @@ public class Panel extends JPanel implements KeyListener{
         	if(evt.getKeyCode() == KeyEvent.VK_DOWN)
               {
               	if (!(igralec1.isPc())){
-              	igralec1.setPolozaj(igralec1.getPolozaj() + igralec1.getHitrost());
+              	igralec1.setPolozaj(Math.min(igralec1.getPolozaj() + igralec1.getHitrost(),panel.getHeight()));
               	repaint();
               	this.requestFocus(true);
               	}
@@ -268,15 +285,15 @@ public class Panel extends JPanel implements KeyListener{
     		
     	double x = zoga.getX();
     	double y = zoga.getY();
-    	int r = zoga.getPolmer();
+    	double r = zoga.getPolmer();
         Color barva1 = Color.black;
         graphics.setColor(barva1);
-        graphics.drawOval((int)x,(int) y, r, r); 
+        graphics.drawOval((int)x,(int) y, (int)r, (int)r); 
 //        graphics.drawOval(100,100, 100, 100); 
 //        graphics.drawOval(0,0, 100, 100); 
     	graphics.setColor(Color.BLACK);
     	graphics.setStroke(new BasicStroke(2.0f));
-        graphics.fillOval((int)x,(int) y, r, r);
+        graphics.fillOval((int)x,(int) y, (int)r, (int)r);
         Dimension dim  = this.getSize();
         
         int polozajX = (int) dim.getWidth();
@@ -286,11 +303,11 @@ public class Panel extends JPanel implements KeyListener{
         int sirina = 13;
       //risanje igralcev
         graphics.setColor(Color.GRAY);
-        graphics.drawRect(polozajX-10, igralec1.getPolozaj()- vel/2, 10, vel);
-        graphics.fillRect(polozajX-10, igralec1.getPolozaj()- vel/2, 10, vel);
+        graphics.drawRect(polozajX-10, (int)igralec1.getPolozaj()- vel/2, 10, vel);
+        graphics.fillRect(polozajX-10, (int)igralec1.getPolozaj()- vel/2, 10, vel);
         int vel2 = igralec2.relVelikost;
-        graphics.drawRect(0, igralec2.getPolozaj()- vel2/2, 10, vel);
-        graphics.fillRect(0, igralec2.getPolozaj()- vel2/2, 10, vel);
+        graphics.drawRect(0, (int)igralec2.getPolozaj()- vel2/2, 10, vel);
+        graphics.fillRect(0, (int)igralec2.getPolozaj()- vel2/2, 10, vel);
         
         graphics.setColor(Color.black);
         graphics.drawRect(0, 0, polozajX, sirina);
@@ -300,10 +317,10 @@ public class Panel extends JPanel implements KeyListener{
         graphics.fillRect(0, polozajY-sirina, polozajX, sirina);
         
         
-		if (System.currentTimeMillis() - zacetnicas > 3000) {
+		if (System.currentTimeMillis() - zacetnicas > 30) {
 			double randomx =  (int)(600.0 * Math.random() + 300);
 			double randomy =  (int)(600.0 * Math.random() + 25);
-			String randomslika = mozneikone.get((int)(3.0 *	Math.random()));
+			String randomslika = mozneikone.get((int)(mozneikone.size() *	Math.random()));
 		
 		
 			//Ikona ikona = new Ikona(x1,y1,10,4, randomslika);
@@ -337,18 +354,42 @@ public class Panel extends JPanel implements KeyListener{
         	if (razdalja < zoga.getPolmer() + 25) {
         		
         		if (ikona.getKateraslika() == "zajc36x36.png") {
+        			if (zoga.getSmerX() > 0) {
+        				igralec1.setHitrost(igralec1.getHitrost() + 25);
+        				
+        			}
         			//ig1_hitrosti.add(150);
         			//ig1_cas.add((double)System.currentTimeMillis());
         			
-        			igralec1.setHitrost(igralec1.getHitrost() + 25);
+        			else igralec2.setHitrost(igralec2.getHitrost() + 25);
         		}
         		
         		if (ikona.getKateraslika() == "pol36x36.png") {
-        			igralec1.setHitrost(igralec1.getHitrost() - 5);
+        			if (zoga.getSmerX() > 0) {
+        				igralec1.setHitrost(igralec1.getHitrost() - 5);
+        			}
+        			else igralec2.setHitrost(igralec2.getHitrost() - 5);
         		}
         		
         		if (ikona.getKateraslika() == "odboj36x36.png") {
-        			zoga.setSmerY(-zoga.getSmerY()); // lahk nardima vec moznih odbojev, tut za x smer alpa random kaj
+        		
+        			double st1 = (0.5 + 0.5*Math.random());
+        			int stp2 = new Random().nextBoolean() ? -1 : 1;
+        			double st2 = stp2*(Math.sqrt(1-st1*st1));
+        			
+        			if (zoga.getSmerX() > 0) {
+	        			zoga.setSmerY(st2);
+	        			zoga.setSmerY(st1);
+        			}
+        			else {
+        				zoga.setSmerY(st2);
+	        			zoga.setSmerY(-st1);
+        			}
+//        			this.smerX = st1;
+//        			this.smerY = st2;
+//        			double st1 = (0.5 + 0.5*Math.random();
+//        			zoga.setSmerY(st1); // lahk nardima vec moznih odbojev, tut za x smer alpa random kaj
+        			
         			
         		}
         		
