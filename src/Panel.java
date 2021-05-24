@@ -47,18 +47,16 @@ public class Panel extends JPanel implements KeyListener{
 	
 	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes,Rezultat rezultat) {
 		super();
-		ikone	= new ArrayList<Ikona>();
+		this.ikone	= new ArrayList<Ikona>();
 //		this.ikone = ikone;
-		mozneikone.add("zajc36x36.png");
-		mozneikone.add("pol36x36.png");
-		mozneikone.add("odboj36x36.png");
-		mozneikone.add("zajc36x36blue.png");
+
+
+//		mozneikone.add("odboj36x36.png");
 		mozneikone.add("zajc36x36red.png");
 		mozneikone.add("zajc36x36green.png");
-		mozneikone.add("pol36x36blue.png");
 		mozneikone.add("pol36x36red.png");
 		mozneikone.add("pol36x36green.png");
-		mozneikone.add("odbojblue36x36.jpg");
+//		mozneikone.add("odbojblue36x36.jpg");
 		mozneikone.add("odbojgreen36x36.jpg");
 		mozneikone.add("odbojred36x36.jpg");
 		
@@ -316,8 +314,8 @@ public class Panel extends JPanel implements KeyListener{
         graphics.drawRect(0, polozajY-sirina, polozajX, sirina);
         graphics.fillRect(0, polozajY-sirina, polozajX, sirina);
         
-        
-		if (System.currentTimeMillis() - zacetnicas > 30) {
+        if (zoga.getHitrost() != 0){
+		if (System.currentTimeMillis() - zacetnicas > 300) {
 			double randomx =  (int)(600.0 * Math.random() + 300);
 			double randomy =  (int)(600.0 * Math.random() + 25);
 			String randomslika = mozneikone.get((int)(mozneikone.size() *	Math.random()));
@@ -329,6 +327,7 @@ public class Panel extends JPanel implements KeyListener{
 				
 			zacetnicas = System.currentTimeMillis();
 			}
+        }
 		
 		
 		
@@ -352,38 +351,69 @@ public class Panel extends JPanel implements KeyListener{
         	double razdalja = Math.sqrt(u + v);
         	
         	if (razdalja < zoga.getPolmer() + 25) {
-        		
-        		if (ikona.getKateraslika() == "zajc36x36.png") {
+        		if (ikona.getKateraslika() == "zajc36x36green.png") {
+        			if (zoga.getSmerX() > 0) {
+        				igralec2.setHitrost(igralec2.getHitrost() + 25);
+        				
+        			}
+        			
+        			else igralec1.setHitrost(igralec1.getHitrost() + 25);
+        		}
+        		if (ikona.getKateraslika() == "zajc36x36red.png") {
         			if (zoga.getSmerX() > 0) {
         				igralec1.setHitrost(igralec1.getHitrost() + 25);
         				
         			}
-        			//ig1_hitrosti.add(150);
-        			//ig1_cas.add((double)System.currentTimeMillis());
         			
         			else igralec2.setHitrost(igralec2.getHitrost() + 25);
         		}
         		
-        		if (ikona.getKateraslika() == "pol36x36.png") {
+        		if (ikona.getKateraslika() == "pol36x36green.png") {
         			if (zoga.getSmerX() > 0) {
         				igralec1.setHitrost(igralec1.getHitrost() - 5);
         			}
         			else igralec2.setHitrost(igralec2.getHitrost() - 5);
         		}
         		
-        		if (ikona.getKateraslika() == "odboj36x36.png") {
+        		if (ikona.getKateraslika() == "pol36x36red.png") {
+        			if (zoga.getSmerX() > 0) {
+        				igralec2.setHitrost(igralec2.getHitrost() - 5);
+        			}
+        			else igralec1.setHitrost(igralec1.getHitrost() - 5);
+        		}
+        		if (ikona.getKateraslika() == "odbojgreen36x36.jpg") {
+            		
+        			double st1 = (0.5 + 0.5*Math.random());
+        			int stp2 = new Random().nextBoolean() ? -1 : 1;
+        			double st2 = stp2*(Math.sqrt(1-st1*st1));
+        			zoga.setHitrost(zoga.getHitrost()+0.5);
+        			
+        			if (zoga.getSmerX() > 0) {
+	        			zoga.setSmerY(st2);
+	        			zoga.setSmerX(st1);
+	        			
+        			}
+        			else {
+        				zoga.setSmerY(st2);
+	        			zoga.setSmerX(-st1);
+        			}
+        			
+        		}
+        			
+        		if (ikona.getKateraslika() == "odbojred36x36.jpg") {
         		
         			double st1 = (0.5 + 0.5*Math.random());
         			int stp2 = new Random().nextBoolean() ? -1 : 1;
         			double st2 = stp2*(Math.sqrt(1-st1*st1));
+        			zoga.setHitrost(zoga.getHitrost()+0.5);
         			
         			if (zoga.getSmerX() > 0) {
 	        			zoga.setSmerY(st2);
-	        			zoga.setSmerY(st1);
+	        			zoga.setSmerX(-st1);
         			}
         			else {
         				zoga.setSmerY(st2);
-	        			zoga.setSmerY(-st1);
+	        			zoga.setSmerX(st1);
         			}
 //        			this.smerX = st1;
 //        			this.smerY = st2;
@@ -393,7 +423,7 @@ public class Panel extends JPanel implements KeyListener{
         			
         		}
         		
-        		ikone.remove(i);
+        		panel.ikone.remove(i);
         		
         		
         	}

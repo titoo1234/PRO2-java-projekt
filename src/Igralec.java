@@ -50,7 +50,14 @@ public class Igralec {
 
 
 	public void setHitrost(int hitrost) {
-		this.hitrost = hitrost;
+		if (hitrost > this.hitrost) {
+		int max = Math.min(hitrost, 50);
+		this.hitrost = max;
+		}
+		else {int min = Math.max(hitrost, 1);
+		this.hitrost = min;
+			
+		}
 	}
 
 

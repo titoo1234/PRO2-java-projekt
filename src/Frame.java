@@ -52,9 +52,11 @@ public class Frame extends JFrame{
 //        add(console,    BorderLayout.CENTER);
         this.setVisible(true);
         this.setLayout(new BorderLayout());
-        this.setLocation(20, 20);
+        this.setLocation(200, 50);
+        this.setResizable(false);
         
         Panel panel = new Panel(zoga,igralec1,igralec2,sizes,rezultat);
+        this.panel = panel;
         panel.requestFocus(true);
         
         
@@ -79,7 +81,7 @@ public class Frame extends JFrame{
         
         
         panel1.add(new JLabel("Velikost žoge:"));
-    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
+    	JComboBox<Integer>	sizes	= new JComboBox<Integer>(new Integer[] {16,24, 32  });
     	sizes.addActionListener (new ActionListener () {
     	    public void actionPerformed(ActionEvent e) {
     	    	String vel1 = sizes.getSelectedItem().toString();
@@ -89,12 +91,12 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(sizes);
-    	if (igralec1.isPc()) {
+    	if (igralec2.isPc()) {
     	JCheckBox check1 = new JCheckBox("Igralec1", true);
     	check1.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
-    	    	igralec1.spremeniAuto();
+    	    	igralec2.spremeniAuto();
     	        panel1.repaint();
     	        panel.requestFocus(true);
     	    }
@@ -106,7 +108,7 @@ public class Frame extends JFrame{
     	check1.addActionListener(new ActionListener() {
     	    @Override
     	    public void actionPerformed(ActionEvent e) {
-    	    	igralec1.spremeniAuto();
+    	    	igralec2.spremeniAuto();
     	        panel1.repaint();
     	        panel.requestFocus(true);
     	    }
@@ -115,12 +117,12 @@ public class Frame extends JFrame{
     	panel1.add(check1);
     	}
     	
-    	if (igralec2.isPc()) {
+    	if (igralec1.isPc()) {
         	JCheckBox check2 = new JCheckBox("Igralec2", true);
         	check2.addActionListener(new ActionListener() {
         	    @Override
         	    public void actionPerformed(ActionEvent e) {
-        	    	igralec2.spremeniAuto();
+        	    	igralec1.spremeniAuto();
         	        panel1.repaint();
         	        panel.requestFocus(true);
         	    }
@@ -132,7 +134,7 @@ public class Frame extends JFrame{
         	check2.addActionListener(new ActionListener() {
         	    @Override
         	    public void actionPerformed(ActionEvent e) {
-        	    	igralec2.spremeniAuto();
+        	    	igralec1.spremeniAuto();
         	        panel1.repaint();
         	        panel.requestFocus(true);
         	    }
@@ -191,6 +193,9 @@ public class Frame extends JFrame{
     			zoga.setSmerY(st2);
     			zoga.setX(sirina/2);
     			zoga.setY(visina/2);
+    			rezultat.setGol1(0);
+    			rezultat.setGol2(0);
+    			panel2.rez.setText("Igralec 1: " + rezultat.getGol2()+"  Igralec 2: "+ rezultat.getGol1());
     	    	button2.setToolTipText("reset");
     	    	panel.requestFocus(true);
     	    	

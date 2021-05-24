@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JTextField;
@@ -226,10 +227,11 @@ public class Zoga {
 			else {
 				rezultat.setGol2(rezultat.getGol2()+1);
 		        panel2.rez.setText("Igralec 1: " + rezultat.getGol2()+"  Igralec 2: "+ rezultat.getGol1());
-
-				System.out.print(rezultat.getGol2());
+		        
+//				System.out.print(rezultat.getGol2());
 				
 			}
+			frame.panel.ikone = new ArrayList<Ikona>();
 			this.ustaviZazeni();
 			int stp1 = new Random().nextBoolean() ? -1 : 1;
 			double st1 = stp1*(0.5 + 0.5*Math.random());
