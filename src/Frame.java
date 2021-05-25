@@ -192,7 +192,7 @@ public class Frame extends JFrame{
     			zoga.setSmerX(st1);
     			zoga.setSmerY(st2);
     			zoga.setX(sirina/2);
-    			zoga.setY(visina/2);
+    			zoga.setY(350);
     			rezultat.setGol1(0);
     			rezultat.setGol2(0);
     			panel2.rez.setText("Igralec 1: " + rezultat.getGol2()+"  Igralec 2: "+ rezultat.getGol1());

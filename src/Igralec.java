@@ -1,3 +1,6 @@
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Igralec {
 	int st;
@@ -6,7 +9,7 @@ public class Igralec {
 	double polozaj;
 	boolean pc;
 	Zoga zoga;
-	
+	private Map<Integer,Boolean> keyMap;
 
 	
 	public Igralec(int st,int hitrost,int relVelikost,double polozaj,boolean pc){
@@ -15,6 +18,13 @@ public class Igralec {
 		this.st = st;
 		this.hitrost = hitrost;
 		this.relVelikost = relVelikost;
+		keyMap = new HashMap<Integer,Boolean>();
+		
+		keyMap.put(KeyEvent.VK_UP,false);
+		keyMap.put(KeyEvent.VK_DOWN,false);
+		keyMap.put(KeyEvent.VK_W,false);
+		keyMap.put(KeyEvent.VK_S,false);
+		keyMap.put(KeyEvent.VK_SPACE,false);
 		
 		
 	}
@@ -151,6 +161,18 @@ public class Igralec {
 		else {
 			this.polozaj = this.polozaj + Math.min(this.hitrost/7,Math.abs((double)(this.polozaj-zoga.getY())));
 		}
+		}
+		else {
+			
+	        
+			if(keyMap.get(KeyEvent.VK_UP))
+				this.setPolozaj(this.getPolozaj() - this.getHitrost());
+			if(keyMap.get(KeyEvent.VK_DOWN))
+				this.setPolozaj(this.getPolozaj() - this.getHitrost());
+			if(keyMap.get(KeyEvent.VK_S))
+				this.setPolozaj(this.getPolozaj() - this.getHitrost());
+			if(keyMap.get(KeyEvent.VK_W))
+				this.setPolozaj(this.getPolozaj() - this.getHitrost());
 		}
 		
 	}

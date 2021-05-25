@@ -167,7 +167,7 @@ public class Zoga {
 			if (igralec1.getRelVelikost()/2 > Math.abs(this.y - this.polmer -igralec1.getPolozaj()) ) {
 				double razdalja = Math.abs(this.y - this.polmer/2 -igralec1.getPolozaj());
 				double k = Math.abs((razdalja)/igralec1.getRelVelikost()/2);
-				this.smerY =  k;
+				this.smerY =  2*k;
 				this.smerX = -Math.sqrt(1-this.smerY*this.smerY);
 				
 			}	
@@ -177,7 +177,7 @@ public class Zoga {
 			if (igralec1.getRelVelikost()/2 > Math.abs(this.y -igralec1.getPolozaj()) ) {
 				double razdalja = Math.abs(this.y + this.polmer/2 -igralec1.getPolozaj());
 				double k = Math.abs((razdalja)/igralec1.getRelVelikost()/2);
-				this.smerY = -k ;
+				this.smerY = -2*k ;
 				this.smerX = -Math.sqrt(1-this.smerY*this.smerY);
 //				this.smerX = -Math.abs(this.getSmerX());
 //				this.smerY = Math.sqrt(1-this.smerX*this.smerX);
@@ -185,11 +185,11 @@ public class Zoga {
 			}
 		}
 		if (this.x < 15) {
-			if (this.y > igralec1.getPolozaj()) {
+			if (this.y > igralec2.getPolozaj()) {
 			if(igralec2.getRelVelikost()/2 > Math.abs(this.y +this.polmer -igralec2.getPolozaj())) {
 				double razdalja = Math.abs(this.y - this.polmer/2 -igralec2.getPolozaj());
 				double k = Math.abs((razdalja)/igralec2.getRelVelikost()/2);
-				this.smerY =  k;
+				this.smerY =  2*k;
 				this.smerX = Math.sqrt(1-this.smerY*this.smerY);
 				
 				
@@ -202,7 +202,7 @@ public class Zoga {
 				if (igralec2.getRelVelikost()/2 > Math.abs(this.y -igralec2.getPolozaj()) ) {
 					double razdalja = Math.abs(this.y - this.polmer/2 -igralec2.getPolozaj());
 					double k = Math.abs((razdalja)/igralec2.getRelVelikost()/2);
-					this.smerY =  -k;
+					this.smerY =  -2*k;
 					this.smerX = Math.sqrt(1-this.smerY*this.smerY);
 					
 //					this.smerX = Math.abs(this.getSmerX());
@@ -215,7 +215,7 @@ public class Zoga {
 		if (this.x < 0-this.polmer/2 | this.x > sirina - this.polmer) {
 			if (this.x < 0-this.polmer/2) {
 				rezultat.setGol1(rezultat.getGol1()+1);
-				System.out.print(rezultat.getGol1());
+//				System.out.print(rezultat.getGol1());
 		        JTextField rez = new JTextField();
 		        panel2.rez.setText("Igralec 1: " + rezultat.getGol2()+"  Igralec 2: "+ rezultat.getGol1());
 //		        rez.setPreferredSize(new Dimension(140, 30));
@@ -240,7 +240,7 @@ public class Zoga {
 			this.smerX = st1;
 			this.smerY = st2;
 			this.setX(sirina/2);
-			this.setY(visina/2);
+			this.setY(350);
 			String vel1 = frame.speeds1.getSelectedItem().toString();
 			int s1 =   Integer.parseInt(vel1);
 			igralec1.setHitrost(s1);
@@ -251,7 +251,7 @@ public class Zoga {
 			
 			}
 		
-		if (this.y < 13 | this.y > visina-this.polmer-130) {
+		if (this.y < 13 | this.y > visina-this.polmer-140) {
 			this.smerY = -this.getSmerY();
 	}
 	}

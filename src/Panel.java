@@ -17,7 +17,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -42,7 +44,7 @@ public class Panel extends JPanel implements KeyListener{
 //	List<Integer> ig1_hitrosti = new ArrayList<Integer>();
 //	List<Double> ig1_cas = new ArrayList<Double>();
 	
-	
+	private Map<Integer,Boolean> keyMap;
 	
 	
 	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes,Rezultat rezultat) {
@@ -59,6 +61,18 @@ public class Panel extends JPanel implements KeyListener{
 //		mozneikone.add("odbojblue36x36.jpg");
 		mozneikone.add("odbojgreen36x36.jpg");
 		mozneikone.add("odbojred36x36.jpg");
+		
+		
+		
+		
+			keyMap = new HashMap<Integer,Boolean>();
+			
+			keyMap.put(KeyEvent.VK_UP,false);
+			keyMap.put(KeyEvent.VK_DOWN,false);
+			keyMap.put(KeyEvent.VK_LEFT,false);
+			keyMap.put(KeyEvent.VK_RIGHT,false);
+			keyMap.put(KeyEvent.VK_SPACE,false);
+
 		
 		
 
@@ -81,8 +95,7 @@ public class Panel extends JPanel implements KeyListener{
 //        zoga.setY(this.getHeight()/2);
         this.igralec1 = igralec1;
         this.igralec2 = igralec2;
-        igralec1.setPolozaj(polozajY/2);
-        igralec2.setPolozaj(polozajY/2);
+
         this.setFocusable(true);
         this.rezultat = rezultat;
         field = new JTextField(8);
@@ -172,6 +185,7 @@ public class Panel extends JPanel implements KeyListener{
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+		
 	};
 	
 	@Override
@@ -219,6 +233,14 @@ public class Panel extends JPanel implements KeyListener{
               	}
               	
               }
+        	
+        	if(evt.getKeyCode() == KeyEvent.VK_SPACE)
+            {
+            	zoga.ustaviZazeni();
+            	this.requestFocus(true);
+            }
+            	
+            
 
     };
 
