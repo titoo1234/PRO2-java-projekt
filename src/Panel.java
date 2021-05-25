@@ -260,14 +260,17 @@ public class Panel extends JPanel implements KeyListener{
     	super.paint(g); // klic metode nadrazreda
 
     	Graphics2D graphics = (Graphics2D)g; // pretvarjanje tipov
+    	int visina1 = 320;
+    	int sirina1 = 130;
+    	int sirina2 = 730;
     	if (rezultat.getGol2() == 3) {
     		field.setVisible(true);
     		
-			field.setLocation(panel.getWidth()/6, panel.getHeight()/2);
+			field.setLocation(sirina1, visina1);
     		field.setText("☻ ZMAGA ☻");
     		field2.setVisible(true);
     		
-			field2.setLocation(panel.getWidth()*4/6, panel.getHeight()/2);
+			field2.setLocation(sirina2,visina1);
     		field2.setText("😢 PORAZ 😭");
     	}
 //    		setBackground(shadow);
@@ -275,11 +278,11 @@ public class Panel extends JPanel implements KeyListener{
     		else if (rezultat.getGol1() == 3) {	
     			field.setVisible(true);
         		
-    			field.setLocation(panel.getWidth()/6, panel.getHeight()/2);
+    			field.setLocation(sirina1, visina1);
         		field.setText("😢 PORAZ 😭");
         		field2.setVisible(true);
         		
-    			field2.setLocation(panel.getWidth()*4/6, panel.getHeight()/2);
+    			field2.setLocation(sirina2, visina1);
         		field2.setText("☻ ZMAGA ☻");
     			
     	}
@@ -338,21 +341,18 @@ public class Panel extends JPanel implements KeyListener{
         
         if (zoga.getHitrost() != 0){
 		if (System.currentTimeMillis() - zacetnicas > 300) {
-			double randomx =  (int)(600.0 * Math.random() + 300);
+			
+			double randomx =  (int)(800.0 * Math.random() + 200);
 			double randomy =  (int)(600.0 * Math.random() + 25);
+
 			String randomslika = mozneikone.get((int)(mozneikone.size() *	Math.random()));
-		
-		
-			//Ikona ikona = new Ikona(x1,y1,10,4, randomslika);
 			Ikona a = new Ikona(randomx, randomy, 10, 4, randomslika);
 			panel.ikone.add(a);
 				
 			zacetnicas = System.currentTimeMillis();
 			}
         }
-		
-		
-		
+
 		for(int i = 0; i < ikone.size() ; i++) {
 			double sredisce_zogaX = zoga.getX() + zoga.getPolmer()/2;
 			double sredisce_zogaY = zoga.getY() + zoga.getPolmer()/2;

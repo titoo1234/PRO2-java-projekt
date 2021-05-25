@@ -52,7 +52,7 @@ public class Frame extends JFrame{
 //        add(console,    BorderLayout.CENTER);
         this.setVisible(true);
         this.setLayout(new BorderLayout());
-        this.setLocation(200, 50);
+        this.setLocation(150, 20);
         this.setResizable(false);
         
         Panel panel = new Panel(zoga,igralec1,igralec2,sizes,rezultat);
