@@ -39,7 +39,6 @@ public class Zoga {
 			
 			}
 			else {
-//				System.out.print(zoga.getKoncna());
 				this.setHitrost(this.getKoncna());	
 			}
 	}
@@ -179,8 +178,7 @@ public class Zoga {
 				double k = Math.abs((razdalja)/igralec1.getRelVelikost()/2);
 				this.smerY = -2*k ;
 				this.smerX = -Math.sqrt(1-this.smerY*this.smerY);
-//				this.smerX = -Math.abs(this.getSmerX());
-//				this.smerY = Math.sqrt(1-this.smerX*this.smerX);
+
 			}	
 			}
 		}
@@ -192,10 +190,6 @@ public class Zoga {
 				this.smerY =  2*k;
 				this.smerX = Math.sqrt(1-this.smerY*this.smerY);
 				
-				
-				
-//				this.smerX = Math.abs(this.getSmerX());
-//				this.smerY = Math.sqrt(1-this.smerX*this.smerX);
 			}
 			}
 			else {
@@ -205,9 +199,6 @@ public class Zoga {
 					this.smerY =  -2*k;
 					this.smerX = Math.sqrt(1-this.smerY*this.smerY);
 					
-//					this.smerX = Math.abs(this.getSmerX());
-//					this.smerY = Math.sqrt(1-this.smerX*this.smerX);
-				
 			}
 		}
 		}
@@ -215,20 +206,15 @@ public class Zoga {
 		if (this.x < 0-this.polmer/2 | this.x > sirina - this.polmer) {
 			if (this.x < 0-this.polmer/2) {
 				rezultat.setGol1(rezultat.getGol1()+1);
-//				System.out.print(rezultat.getGol1());
 		        JTextField rez = new JTextField();
 		        panel2.rez.setText("Igralec 1: " + rezultat.getGol2()+"  Igralec 2: "+ rezultat.getGol1());
-//		        rez.setPreferredSize(new Dimension(140, 30));
-//		        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
-		        
+	        
 		        panel2.add(rez);
 		        
 			}
 			else {
 				rezultat.setGol2(rezultat.getGol2()+1);
 		        panel2.rez.setText("Igralec 1: " + rezultat.getGol2()+"  Igralec 2: "+ rezultat.getGol1());
-		        
-//				System.out.print(rezultat.getGol2());
 				
 			}
 			frame.panel.ikone = new ArrayList<Ikona>();

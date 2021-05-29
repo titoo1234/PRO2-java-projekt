@@ -3,13 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -18,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -36,7 +29,6 @@ public class Frame extends JFrame{
     public Frame(Zoga zoga,Igralec igralec1,Igralec igralec2,Rezultat rezultat, Panel2 panel2) {
     	
         super();
-//        setFocusable(true);
         this.panel2 =  new JPanel();
         this.igralec1 = igralec1;
         this.zoga = zoga;
@@ -45,10 +37,6 @@ public class Frame extends JFrame{
         this.setSize(1200, 800);
         this.rezultat = rezultat;
         
-
-//        this.setPreferredSize(new Dimension(600, 450));
-//        Panel    console    = new Panel();
-//        add(console,    BorderLayout.CENTER);
         this.setVisible(true);
         this.setLayout(new BorderLayout());
         this.setLocation(150, 20);
@@ -166,14 +154,11 @@ public class Frame extends JFrame{
     	    		panel.requestFocus(true);
     	    	}
     	    	
-    	    	
-//    	        repaint();
     	    }
     	});
     	panel1.add(button);
     	
 		int sirina = this.sir();
-		int visina = this.vis();
     	
     	JButton button2 = new JButton("Reset");
     	button2.setPreferredSize(new Dimension(80, 25));
@@ -198,10 +183,8 @@ public class Frame extends JFrame{
     	    	button2.setToolTipText("reset");
     	    	panel.requestFocus(true);
     	    	
-    	    	panel.ikone.clear(); // hitrosti se more nastavit nazaj
+    	    	panel.ikone.clear();
     	    	
-    	    	
-//    	        repaint();
     	    }
     	});
     	panel1.add(button2);
@@ -217,7 +200,6 @@ public class Frame extends JFrame{
     	              int hitrost = (int)source.getValue();
     	              if (zoga.getHitrost() == 0) {
     	            	  zoga.setKoncna(hitrost);
-    	            	  //zoga.setHitrost(hitrost); //ta del lahko zakomentirama
     	            	  panel.requestFocus(true);
     	              }
     	              else{
@@ -230,7 +212,6 @@ public class Frame extends JFrame{
     	              
     	              
     			}
-//    	        panel1.repaint();
     	        
     	    }
     	});
@@ -252,31 +233,8 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(speeds2);
-    	
-        
-    	
-    	
-//    	while (true) {
-//    	    // ...
-//    	    try {
-//    	        Thread.sleep(slider.getValue());
-//    	    } catch (InterruptedException e) {
-//    	        e.printStackTrace();
-//    	    }
-//    	}
         
         add (panel1, BorderLayout.NORTH);
-//        JPanel panel2 = new JPanel();
-//        JTextField rez = new JTextField();
-//        rez.setPreferredSize(new Dimension(140, 30));
-//        rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
-//        panel2.repaint();
-//        panel2.add(rez);
-//        
-//        
-//        
-//        panel2.setBackground(customColor);
-        
         add (panel2, BorderLayout.SOUTH);
         
         
@@ -285,137 +243,17 @@ public class Frame extends JFrame{
 		int velikost =   Integer.parseInt(vel3);
 		zoga.setPolmer(velikost);
 		
-	
-		
-		
-		
-		
-        
-//        Dimension dim = panel.getSize();
-//        double visina1 = dim.getHeight();
-        
-        
-//        panel.addMouseListener(new MouseListener() {
-//    		
-//    		@Override
-//    		public void mouseReleased(MouseEvent e) {
-//    			// TODO Auto-generated method stub	
-//    		}
-//    		@Override	
-//    		public void mousePressed(MouseEvent e) {			
-//    			String vel1 = sizes.getSelectedItem().toString();
-//    			int velikost =   Integer.parseInt(vel1);
-//    			zoga.setPolmer(velikost);
-//    			
-//    			zoga.ustaviZazeni();
-//    			
-//    			
-//    		}
-//    		
-//    		@Override
-//    		public void mouseExited(MouseEvent e) {
-//    			// TODO Auto-generated method stub	
-//    		}
-//    		@Override
-//    		public void mouseEntered(MouseEvent e) {
-//    			// TODO Auto-generated method stub	
-//    		}
-//    		@Override
-//    		public void mouseClicked(MouseEvent e) {
-//    			// TODO Auto-generated method stub
-//    			
-//    		}
-//        
-//    	});
-
-//		panel.addKeyListener(new KeyAdapter() 
-//		        {
-//			public void keyPressed(KeyEvent evt)
-//          {panel.requestFocus(true);
-//              if(evt.getKeyCode() == KeyEvent.VK_UP)
-//              {
-////              	String vel1 = sizes.getSelectedItem().toString();
-////      			int velikost =   Integer.parseInt(vel1);
-////      			zoga.setPolmer(velikost);
-////              	zoga.ustaviZazeni();
-//              	if (!(igralec1.isPc())){//ni računalnik
-//              	igralec1.setPolozaj(igralec1.getPolozaj() - igralec1.getHitrost());
-//              	panel1.repaint();
-//              	panel.requestFocus(true);
-//              	}
-//              	
-//              	
-//              }
-//          }
-//      });
-//      addKeyListener(new KeyAdapter() 
-//      {
-//          public void keyPressed(KeyEvent evt)
-//          
-//          {
-//              if(evt.getKeyCode() == KeyEvent.VK_DOWN)
-//              {
-//              	if (!(igralec1.isPc())){
-//              	igralec1.setPolozaj(igralec1.getPolozaj() + igralec1.getHitrost());
-//              	panel1.repaint();
-//              	panel.requestFocus(true);
-//              	}
-//              	
-//              }
-//          }
-//      });
-//      addKeyListener(new KeyAdapter() 
-//      {
-//          public void keyPressed(KeyEvent evt)
-//          {
-//              if(evt.getKeyCode() == KeyEvent.VK_W)
-//              {
-//              	if (!(igralec2.isPc())){
-//              	igralec2.setPolozaj(igralec2.getPolozaj() - igralec2.getHitrost());
-//              	panel1.repaint();
-//              	}
-//              	
-//              }
-//          }
-//      });
-//      addKeyListener(new KeyAdapter() 
-//      {
-//          public void keyPressed(KeyEvent evt)
-//          {
-//              if(evt.getKeyCode() == KeyEvent.VK_S)
-//              {
-//              	if (!(igralec2.isPc())){
-//              	igralec2.setPolozaj(igralec2.getPolozaj() + igralec2.getHitrost());
-//              	
-//              	panel1.repaint();
-//              	}
-//              	
-//              }
-//          }
-//      });
-		
         add (panel, BorderLayout.CENTER);
         panel.requestFocus(true);
       
     }
     public int vis() {
     	int a = this.getSize().height;
-//    	System.out.println(a);
-    return a;
+    	return a;
     }
     public int sir() {
     	int b = this.getSize().width;
-//    	System.out.println(b);
         return b;
-    }
-
-    @Override
-    public void repaint() {
-    	// TODO Auto-generated method stub
-
-    	super.repaint();
-    	
-        
     }
 
 }

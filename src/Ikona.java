@@ -13,8 +13,7 @@ public class Ikona{
 		this.x = x;
 		this.y = y;
 		this.stranica = stranica;
-		this.pomen = pomen; // èe 1-> hitrost zoge; 2-> ovira 3-> upoèasni tekmovalca
-//		(naredi v igralcu metodo upoèasni ki dela za 5 s...)
+		this.pomen = pomen;
 		this.kateraslika = slika;
 		
 	}
