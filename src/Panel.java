@@ -9,7 +9,6 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -43,14 +42,16 @@ public class Panel extends JPanel implements KeyListener{
 	long zacetnicas = System.currentTimeMillis();
 //	List<Integer> ig1_hitrosti = new ArrayList<Integer>();
 //	List<Double> ig1_cas = new ArrayList<Double>();
+	public Panel2 panel2;
 	
 	private Map<Integer,Boolean> keyMap;
 	
 	
-	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes,Rezultat rezultat) {
+	public Panel(Zoga zoga,Igralec igralec1,Igralec igralec2,JComboBox<Integer>	sizes,Rezultat rezultat,Panel2 panel2) {
 		super();
 		this.ikone	= new ArrayList<Ikona>();
 //		this.ikone = ikone;
+		this.panel2 = panel2;
 
 
 //		mozneikone.add("odboj36x36.png");
@@ -191,7 +192,9 @@ public class Panel extends JPanel implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent evt)
     {
-        if(evt.getKeyCode() == KeyEvent.VK_UP)
+		int key = evt.getKeyCode();
+
+        if(key == KeyEvent.VK_UP)
         {
 //        	String vel1 = sizes.getSelectedItem().toString();
 //			int velikost =   Integer.parseInt(vel1);
@@ -204,7 +207,7 @@ public class Panel extends JPanel implements KeyListener{
         	this.requestFocus(true);
         	}
         }
-        	if(evt.getKeyCode() == KeyEvent.VK_S)
+        	if(key == KeyEvent.VK_S)
               {
               	if (!(igralec2.isPc())){
               	igralec2.setPolozaj(Math.min(igralec2.getPolozaj() + igralec2.getHitrost(),panel.getHeight()));
@@ -213,7 +216,7 @@ public class Panel extends JPanel implements KeyListener{
               	}
 	
         }
-        	if(evt.getKeyCode() == KeyEvent.VK_W)
+        	if(key == KeyEvent.VK_W)
               {
               	if (!(igralec2.isPc())){
               		
@@ -224,7 +227,7 @@ public class Panel extends JPanel implements KeyListener{
               	
               }
         	
-        	if(evt.getKeyCode() == KeyEvent.VK_DOWN)
+        	if(key == KeyEvent.VK_DOWN)
               {
               	if (!(igralec1.isPc())){
               	igralec1.setPolozaj(Math.min(igralec1.getPolozaj() + igralec1.getHitrost(),panel.getHeight()));
@@ -234,9 +237,13 @@ public class Panel extends JPanel implements KeyListener{
               	
               }
         	
-        	if(evt.getKeyCode() == KeyEvent.VK_SPACE)
+        	if(key == KeyEvent.VK_SPACE)
             {
             	zoga.ustaviZazeni();
+            	if (panel.rezultat.getGol1() == 3 |panel.rezultat.getGol2() == 3) {
+            		panel.rezultat.reset();
+    		        panel.panel2.rez.setText("Igralec 1: " + panel.rezultat.getGol1()+"  Igralec 2: "+ panel.rezultat.getGol2());
+            	}
             	this.requestFocus(true);
             }
             	

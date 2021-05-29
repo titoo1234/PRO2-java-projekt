@@ -1,9 +1,10 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+
+
 import java.awt.Panel;
 import java.util.Random;
 
 public class PongGlavniProgram {
+	
 
 	public static void main(String[] args) {
 		Rezultat rezultat = new Rezultat();
@@ -65,5 +66,6 @@ public class PongGlavniProgram {
 		}
 		
 	}
+	
 
 }

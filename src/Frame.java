@@ -3,7 +3,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -27,7 +26,7 @@ public class Frame extends JFrame{
 
 	Zoga zoga;
 	Panel panel;
-	JPanel panel2;
+	public JPanel panel2;
 	JComboBox<Integer>	sizes;
 	JComboBox<Integer>	speeds1;
 	JComboBox<Integer>	speeds2;
@@ -55,7 +54,7 @@ public class Frame extends JFrame{
         this.setLocation(150, 20);
         this.setResizable(false);
         
-        Panel panel = new Panel(zoga,igralec1,igralec2,sizes,rezultat);
+        Panel panel = new Panel(zoga,igralec1,igralec2,sizes,rezultat,panel2);
         this.panel = panel;
         panel.requestFocus(true);
         
