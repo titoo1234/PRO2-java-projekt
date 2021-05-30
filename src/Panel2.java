@@ -15,6 +15,7 @@ public class Panel2 extends JPanel {
 		
         JTextField rez = new JTextField();
         this.rez = rez;
+        //Izpis rezultata
         rez.setPreferredSize(new Dimension(140, 30));
         rez.setText("Igralec 1: " + rezultat.getGol1()+"  Igralec 2: "+ rezultat.getGol2());
         

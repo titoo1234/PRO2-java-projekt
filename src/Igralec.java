@@ -61,11 +61,14 @@ public class Igralec {
 
 	public void setHitrost(int hitrost) {
 		if (hitrost > this.hitrost) {
-		int max = Math.min(hitrost, 50);
-		this.hitrost = max;
+			//Poveèamo le lahko do neke maksimalne vrednosti, sicer bi bili skoki preveliki
+			int max = Math.min(hitrost, 50);
+			this.hitrost = max;
 		}
-		else {int min = Math.max(hitrost, 1);
-		this.hitrost = min;
+		else {
+			//Ne smemo zmanšati na 0
+			int min = Math.max(hitrost, 1);
+			this.hitrost = min;
 			
 		}
 	}
@@ -150,6 +153,7 @@ public class Igralec {
 	}
 
 	public  void update(Zoga zoga) {
+		//V primeru da 'igra' raèunalnik
 		if (this.pc) {
 		if (zoga.getY() +zoga.getPolmer()/2 == this.polozaj) {
 			
@@ -162,7 +166,7 @@ public class Igralec {
 			this.polozaj = this.polozaj + Math.min(this.hitrost/7,Math.abs((double)(this.polozaj-zoga.getY())));
 		}
 		}
-		else {
+		else {//igramo mi
 			
 	        
 			if(keyMap.get(KeyEvent.VK_UP))
@@ -179,6 +183,7 @@ public class Igralec {
 	
 
 	public void spremeniAuto() {
+		//Èe spremenimo iz pc v igranje ali obratno
 		if (this.pc) {
 			this.pc = false;
 		}

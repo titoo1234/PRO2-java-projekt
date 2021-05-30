@@ -50,6 +50,7 @@ public class Frame extends JFrame{
         JPanel panel1 = new JPanel();
         
         panel1.add(new JLabel("Hitrost:"));
+        //Hitrost levega igralca
     	JComboBox<Integer>	speeds1	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
     	this.speeds1 = speeds1;
     	String vel1 = speeds1.getSelectedItem().toString();
@@ -78,7 +79,8 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(sizes);
-    	if (igralec2.isPc()) {
+    	//Spreminjanje samodejno igranje/računalnik
+    	if (igralec2.isPc()) { 
     	JCheckBox check1 = new JCheckBox("Igralec1", true);
     	check1.addActionListener(new ActionListener() {
     	    @Override
@@ -134,8 +136,9 @@ public class Frame extends JFrame{
     	
     	Color customColor = new Color(200,255,200);
         panel1.setBackground(customColor);
-        ImageIcon slika = new ImageIcon("Zajeta2.png");
         
+        //Tipka za začetek igre/pavza
+        ImageIcon slika = new ImageIcon("Zajeta2.png");     
     	JButton button = new JButton(slika);
     	button.setFont(button.getFont().deriveFont(10.0f));
     	button.setPreferredSize(new Dimension(50, 40));
@@ -159,7 +162,8 @@ public class Frame extends JFrame{
     	panel1.add(button);
     	
 		int sirina = this.sir();
-    	
+		
+    	//Tipka reset(za ponastavitev igralne plošče)
     	JButton button2 = new JButton("Reset");
     	button2.setPreferredSize(new Dimension(80, 25));
     	
@@ -169,6 +173,7 @@ public class Frame extends JFrame{
     	    	if (zoga.getHitrost() != 0) {
     	    		zoga.ustaviZazeni();
     	    	}
+    	    	//poljubno nastavi smer žoge ob ponovnem startu
     	    	int stp1 = new Random().nextBoolean() ? -1 : 1;
     			double st1 = stp1*(0.5 + 0.5*Math.random());
     			int stp2 = new Random().nextBoolean() ? -1 : 1;
@@ -189,7 +194,7 @@ public class Frame extends JFrame{
     	});
     	panel1.add(button2);
     	
-    	
+    	//Nastavljanje hitrosti žoge
     	JSlider slider = new JSlider(0, 10, 1);
     	slider.addChangeListener(new ChangeListener() {
     		
@@ -216,7 +221,7 @@ public class Frame extends JFrame{
     	    }
     	});
     	panel1.add(slider);
-    	
+    	//Hitrost desnega igralca
     	panel1.add(new JLabel("Hitrost:"));
     	JComboBox<Integer>	speeds2	= new JComboBox<Integer>(new Integer[] {16, 32, 64  });
     	this.speeds2 = speeds2;

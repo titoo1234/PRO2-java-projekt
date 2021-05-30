@@ -198,7 +198,7 @@ public class Panel extends JPanel implements KeyListener{
         	graphics.drawImage(slika,(int)x-20,(int) y-20,this);
 
     	}
-    		
+    	//risanje žoge
     	double x = zoga.getX();
     	double y = zoga.getY();
     	double r = zoga.getPolmer();
@@ -209,7 +209,7 @@ public class Panel extends JPanel implements KeyListener{
     	graphics.setStroke(new BasicStroke(2.0f));
         graphics.fillOval((int)x,(int) y, (int)r, (int)r);
         Dimension dim  = this.getSize();
-        
+        //risanje igralcev
         int polozajX = (int) dim.getWidth();
         int polozajY = (int) dim.getHeight();
         int vel = igralec1.relVelikost;
@@ -227,7 +227,7 @@ public class Panel extends JPanel implements KeyListener{
         
         graphics.drawRect(0, polozajY-sirina, polozajX, sirina);
         graphics.fillRect(0, polozajY-sirina, polozajX, sirina);
-        
+        //Delanje novih ikon
         if (zoga.getHitrost() != 0){
 		if (System.currentTimeMillis() - zacetnicas > 800) {
 			
@@ -241,7 +241,7 @@ public class Panel extends JPanel implements KeyListener{
 			zacetnicas = System.currentTimeMillis();
 			}
         }
-
+        //preverimo ali je žoga prišla do katere izmed ikon
 		for(int i = 0; i < ikone.size() ; i++) {
 			double sredisce_zogaX = zoga.getX() + zoga.getPolmer()/2;
 			double sredisce_zogaY = zoga.getY() + zoga.getPolmer()/2;
@@ -252,7 +252,7 @@ public class Panel extends JPanel implements KeyListener{
         	double u = (sredisce_zogaX - ikonax) * (sredisce_zogaX - ikonax);
         	double v = (sredisce_zogaY - ikonay) * (sredisce_zogaY - ikonay);
         	double razdalja = Math.sqrt(u + v);
-        	
+        	//Primerno spremeni latnosti igralne plošče ko pride do ikone
         	if (razdalja < zoga.getPolmer() + 25) {
         		if (ikona.getKateraslika() == "zajc36x36green.png") {
         			if (zoga.getSmerX() > 0) {
@@ -321,7 +321,7 @@ public class Panel extends JPanel implements KeyListener{
         			
         			
         		}
-        		
+        		//odstani ikono do katere pride
         		panel.ikone.remove(i);
         		
         		

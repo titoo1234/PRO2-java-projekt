@@ -35,8 +35,7 @@ public class Zoga {
 	public void ustaviZazeni() {
 		if (this.getHitrost() != 0.0) {	
 			this.setHitrost(0.0);
-			
-			
+
 			}
 			else {
 				this.setHitrost(this.getKoncna());	
@@ -173,6 +172,7 @@ public class Zoga {
 			}
 		
 			else {
+				
 			if (igralec1.getRelVelikost()/2 > Math.abs(this.y -igralec1.getPolozaj()) ) {
 				double razdalja = Math.abs(this.y + this.polmer/2 -igralec1.getPolozaj());
 				double k = Math.abs((razdalja)/igralec1.getRelVelikost()/2);
@@ -202,7 +202,7 @@ public class Zoga {
 			}
 		}
 		}
-		
+		//Žoga se ne odbije...oz pade gol
 		if (this.x < 0-this.polmer/2 | this.x > sirina - this.polmer) {
 			if (this.x < 0-this.polmer/2) {
 				rezultat.setGol1(rezultat.getGol1()+1);
